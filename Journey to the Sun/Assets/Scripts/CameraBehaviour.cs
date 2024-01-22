@@ -14,7 +14,6 @@ public class CameraBehaviour : MonoBehaviour
         
         Vector3 cameraWorldCoord = RoomController.GetWorldCoord(RoomController.playerRoomCoord);
         cameraWorldCoord += new Vector3(0, 0, -4);
-        Debug.Log(cameraWorldCoord);
         transform.position = Vector3.MoveTowards(transform.position, cameraWorldCoord, moveSpeed * Time.deltaTime);
     }
 }

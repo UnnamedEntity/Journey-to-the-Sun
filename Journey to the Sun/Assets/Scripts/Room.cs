@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
-    int[] possibleNoOfRooms = { 1, 2, 3, 4 };
-    int[] probabilityDistribution = { 100, 0, 0, 0};
+    int[] possibleNoOfRooms = { 2, 3, 4 };
+    int[] probabilityDistribution = { 35, 20, 25 };
     List<int> weightedPossibleNoOfRooms = new List<int>();
 
     public int childRooms;
@@ -29,7 +29,7 @@ public class Room : MonoBehaviour
         int childRooms;
         int randomIndex = Random.Range(0, weightedPossibleNoOfRooms.Count);
         childRooms = weightedPossibleNoOfRooms[randomIndex];
-        Debug.Log(childRooms);
+        Debug.Log("Created room has " + childRooms + " children");
         return childRooms;
     }
     void WeightArray()
