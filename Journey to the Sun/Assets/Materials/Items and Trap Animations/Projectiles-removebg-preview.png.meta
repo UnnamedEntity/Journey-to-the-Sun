@@ -264,7 +264,7 @@ TextureImporter:
       213: -2696657559531777876
     second: Projectiles-removebg-preview_86
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -281,9 +281,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -292,9 +295,9 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
-    aniso: -1
-    mipBias: -100
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -315,10 +318,15 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -346,6 +354,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -2196,9 +2216,96 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-  spritePackingTag: 
+    nameFileIdTable:
+      Projectiles-removebg-preview_0: -9060923241808314479
+      Projectiles-removebg-preview_1: -6276473138583850556
+      Projectiles-removebg-preview_10: -6092900390121747871
+      Projectiles-removebg-preview_11: -7936541131666498623
+      Projectiles-removebg-preview_12: -2474814906188869339
+      Projectiles-removebg-preview_13: -9188945807462351731
+      Projectiles-removebg-preview_14: -4982939717514980196
+      Projectiles-removebg-preview_15: -103348213349073176
+      Projectiles-removebg-preview_16: 5456065373610040421
+      Projectiles-removebg-preview_17: -7376323356565071390
+      Projectiles-removebg-preview_18: -2889673263661326000
+      Projectiles-removebg-preview_19: -5588913234131773601
+      Projectiles-removebg-preview_2: -7411049846027879575
+      Projectiles-removebg-preview_20: 7087236438051351896
+      Projectiles-removebg-preview_21: 45667836395546207
+      Projectiles-removebg-preview_22: 2268420292952413814
+      Projectiles-removebg-preview_23: -7364789169755012922
+      Projectiles-removebg-preview_24: 4734539750235029205
+      Projectiles-removebg-preview_25: -8385077726730200988
+      Projectiles-removebg-preview_26: 8416322167121010354
+      Projectiles-removebg-preview_27: -8837841844334280190
+      Projectiles-removebg-preview_28: 6039469518994429945
+      Projectiles-removebg-preview_29: 5180610617391731470
+      Projectiles-removebg-preview_3: 6881729989856710681
+      Projectiles-removebg-preview_30: 7758128472541832134
+      Projectiles-removebg-preview_31: 5156493578228900161
+      Projectiles-removebg-preview_32: -184933645378582998
+      Projectiles-removebg-preview_33: -7000791922422717073
+      Projectiles-removebg-preview_34: -6697470003366070392
+      Projectiles-removebg-preview_35: 1065900363152609790
+      Projectiles-removebg-preview_36: 6735166029151373855
+      Projectiles-removebg-preview_37: -4134010108145911084
+      Projectiles-removebg-preview_38: 4665506273313964428
+      Projectiles-removebg-preview_39: -3743035083451655404
+      Projectiles-removebg-preview_4: -7161639960731002387
+      Projectiles-removebg-preview_40: 890421580707912930
+      Projectiles-removebg-preview_41: 7795756506069008093
+      Projectiles-removebg-preview_42: 2432786222209400787
+      Projectiles-removebg-preview_43: 2757938148180428659
+      Projectiles-removebg-preview_44: -592488400698058247
+      Projectiles-removebg-preview_45: -1882803021604787282
+      Projectiles-removebg-preview_46: 4626339662604329975
+      Projectiles-removebg-preview_47: -748091985234539604
+      Projectiles-removebg-preview_48: 7118108097580657928
+      Projectiles-removebg-preview_49: -8839370238261488407
+      Projectiles-removebg-preview_5: -1391762327186877614
+      Projectiles-removebg-preview_50: -8340465594083299588
+      Projectiles-removebg-preview_51: -8719315437575382292
+      Projectiles-removebg-preview_52: 802620173034939266
+      Projectiles-removebg-preview_53: -3822549696460340676
+      Projectiles-removebg-preview_54: 256141606396293366
+      Projectiles-removebg-preview_55: 639741752099325051
+      Projectiles-removebg-preview_56: 193289633763943072
+      Projectiles-removebg-preview_57: -2224130935522597901
+      Projectiles-removebg-preview_58: -5441406862701532846
+      Projectiles-removebg-preview_59: 5219940415980372290
+      Projectiles-removebg-preview_6: 164948490357348328
+      Projectiles-removebg-preview_60: -7175207159095496618
+      Projectiles-removebg-preview_61: -6905317356572711045
+      Projectiles-removebg-preview_62: 6049136216635396282
+      Projectiles-removebg-preview_63: -4544672332085486273
+      Projectiles-removebg-preview_64: -6230244905324805933
+      Projectiles-removebg-preview_65: -8108631806773338235
+      Projectiles-removebg-preview_66: -5149776022480779760
+      Projectiles-removebg-preview_67: -7953586827637538698
+      Projectiles-removebg-preview_68: 6089323934651383632
+      Projectiles-removebg-preview_69: -8093711371658252703
+      Projectiles-removebg-preview_7: -5859421131937536435
+      Projectiles-removebg-preview_70: 2812533789834049692
+      Projectiles-removebg-preview_71: 1521993636918979060
+      Projectiles-removebg-preview_72: 7486069433912666213
+      Projectiles-removebg-preview_73: -8421494966395189643
+      Projectiles-removebg-preview_74: 2663600559361218538
+      Projectiles-removebg-preview_75: 2221311072690617087
+      Projectiles-removebg-preview_76: -6206355000075289061
+      Projectiles-removebg-preview_77: 7378971068827026407
+      Projectiles-removebg-preview_78: 5817917273224741841
+      Projectiles-removebg-preview_79: -8515535932081918650
+      Projectiles-removebg-preview_8: 8345216733841984737
+      Projectiles-removebg-preview_80: -9116872745280138797
+      Projectiles-removebg-preview_81: -863870591679196852
+      Projectiles-removebg-preview_82: -2173575292091426346
+      Projectiles-removebg-preview_83: -7314278081689063284
+      Projectiles-removebg-preview_84: 4077437804917500051
+      Projectiles-removebg-preview_85: -6831689819104182477
+      Projectiles-removebg-preview_86: -2696657559531777876
+      Projectiles-removebg-preview_9: -746189374419753039
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

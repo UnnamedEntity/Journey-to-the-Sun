@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class RoomController : MonoBehaviour
@@ -16,64 +18,74 @@ public class RoomController : MonoBehaviour
     Vector2 Left = new Vector2(-1, 0);
     Vector2 Right = new Vector2(1, 0);
     
-    int maxRooms = 11;
+    int maxRooms = 10;
     int createdRooms = 1;
+    int collisions;
+    bool startGen = false;
+    int createdChildRooms;
 
     
     private Queue<GameObject> _toCreate = new Queue<GameObject>();
+    List<Vector3> listOfCollisionCoords = new List<Vector3>();
+    List<Vector3> directionList = new List<Vector3>();
+    List<Vector3> createdRoomCoords = new List<Vector3>();
 
 
     public GameObject parentRoom;
+    int childRooms;
+
+    void StartGen()
+    {
+        Debug.Log("--------------NEW ITERATION--------------");
+        parentRoom = _toCreate.Dequeue();
+        childRooms = childRooms = parentRoom.GetComponent<Room>().childRooms;
+        Debug.Log($"New parent room is {parentRoom}");
+        Debug.Log($"Parent room has {childRooms} children");
+        CreateDirectionList(childRooms);
+    }
+    
 
     void Start()
     {
-        Debug.Log("Started generation procedure");
-        Debug.Log("--------------------------STARTING FIRST ITERATION--------------------------");
-        Debug.Log($"Parent room is {parentRoom}");
-        toCreate_Children(parentRoom);
-        while (createdRooms < maxRooms)
-        {
-            Debug.Log("Created rooms is less than max rooms");
-            if (Input.GetKeyDown("c"))
-            {
-                Debug.Log("--------------------------REPEATING PROCEDURE--------------------------");
-                Debug.Log($"New parent room is {parentRoom}");
-                toCreate_Children(parentRoom);
-            }
-        }
-   }
+        childRooms = parentRoom.GetComponent<Room>().childRooms;
+        CreateDirectionList(childRooms);
+    }
 
-    //Called first on Start(), gathers the coordinates of the rooms to create next to the parent room
-    void toCreate_Children(GameObject parentRoom)
+    private void Update()
     {
-        Debug.Log("Called toCreate_Children");
-        var directionList = CreateDirectionList(parentRoom.GetComponent<Room>().childRooms);
-        Debug.Log("Beginning checking of existing rooms");
-        for(int i = 0; i < directionList.Count; i++)
+        if (createdRooms < maxRooms - 1 && Input.GetKeyDown(KeyCode.Space) && startGen == false)
         {
-            Debug.Log("Checking " + directionList[i]);
-            Debug.Log($"Looking for: room{directionList[i]}");
-            if (GameObject.Find($"room{directionList[i]}"))
+            StartGen();
+            startGen = true;
+        }
+
+        if (createdRooms < maxRooms && startGen)
+        {
+            StartGen();
+        }
+
+        if (Input.GetKeyDown("d"))
+        {
+            foreach(Vector3 roomCoord in createdRoomCoords)
             {
-                Debug.Log("Conflict found, deleting from direction list");
-                directionList.RemoveAt(i);
-            }
-            else
-            {
-                Debug.Log("No conflicts found");
+                Destroy(GameObject.Find($"room{roomCoord}"));
+                startGen = false;
+                createdRooms = 0;
             }
         }
-        CreateChildren(parentRoom, directionList);
+        
     }
 
     //Returns a list of random directions based on the target number of child rooms of the parent room
-    List<Vector3> CreateDirectionList(int childRooms)
+    void CreateDirectionList(int childRooms)
     {
-        Debug.Log("Called CreateDirectionList");
-        Vector3[] directionArray = { Up, Down, Left, Right };
         var directionListPreset = new List<Vector3>();
+        Vector3[] directionArray = { Up, Down, Left, Right };
+
+        directionList.Clear();
+        Debug.Log("Called CreateDirectionList");
+
         directionListPreset.AddRange(directionArray);
-        var directionList = new List<Vector3>();
 
         for (int i = 0; i < childRooms; i++)
         {
@@ -82,34 +94,69 @@ public class RoomController : MonoBehaviour
             directionListPreset.RemoveAt(randomIndex);
             Debug.Log("Added to direction list: " + directionList[i]);
         }
-        return directionList;
-    }
 
-    //Called after toCreate_Children has completed, after directionList has been acquired for target coordinates. Creates the children and adds them to a queue to be set as the next parent room
-    void CreateChildren(GameObject parentRoom, List<Vector3> directionList)
-    {
-        Debug.Log("Called CreateChildren");
-        for(int i = 0; i < directionList.Count; i++)
-        {
-            Debug.Log("Room will be created at " + (parentRoom.transform.position + directionList[i]));
-            CreateRoom(parentRoom.transform.position + directionList[i]);
-            directionList.RemoveAt(i);
-        }
+        CheckAndRemoveCollisions();
     }
 
     //Creates a room and names it according to its coordinates
-    void CreateRoom(Vector3 newRoomCoord)
+    void CreateRoom(Vector3 newRoomCoord, Vector3 direction)
     {
-        Debug.Log($"Creating room with room coordinate: {newRoomCoord}");
-        var Room = Instantiate(room, GetWorldCoord(newRoomCoord), roomTransform.rotation);
-        Room.name = $"room{newRoomCoord}";
-        _toCreate.Enqueue(Room);
-        Debug.Log($"Created room at {Room} and added to queue");
-        Debug.Log($"Next parent room is {_toCreate.Peek()}");
-        parentRoom = _toCreate.Dequeue();
-        createdRooms++;
+        if(createdChildRooms < childRooms && directionList.Contains(direction))
+        {
+            var Room = Instantiate(room, GetWorldCoord(newRoomCoord), roomTransform.rotation);
+            Room.name = $"room{newRoomCoord}";
+            _toCreate.Enqueue(Room);
+            Debug.Log($"Created room at {Room} and added to queue");
+            createdRooms++;
+            createdChildRooms++;
+            createdRoomCoords.Add(newRoomCoord);
+        }
     }
     
+    void CheckAndRemoveCollisions()
+    {
+        collisions = 0;
+        createdChildRooms = 0;
+        listOfCollisionCoords.Clear();
+
+        CheckCollision(Vector3.up);
+        CheckCollision(Vector3.down);
+        CheckCollision(Vector3.left);
+        CheckCollision(Vector3.right);
+
+        RemoveCollisions();
+    }
+
+    void CheckCollision(Vector3 direction)
+    {
+        if(GameObject.Find($"room{GetRoomCoord(parentRoom.transform.position) + direction}"))
+        {
+            Debug.Log($"Collision found, adding {GetRoomCoord(parentRoom.transform.position) + direction} to the list of collision coordinates");
+            collisions++;
+            listOfCollisionCoords.Add(direction);
+        }
+        else
+        {
+            Debug.Log("No collisions found");
+            Debug.Log("Room will be created at " + (GetRoomCoord(parentRoom.transform.position) + direction));
+            CreateRoom(GetRoomCoord(parentRoom.transform.position) + direction, direction);
+        }
+    }
+
+    void RemoveCollisions()
+    {
+        Debug.Log("Removing all collisions");
+        foreach (Vector3 coords in listOfCollisionCoords)
+        {
+            if (directionList.Contains(coords))
+            {
+                directionList.Remove(coords);
+                
+                Debug.Log($"New direction list is {directionList}");
+            }
+        }
+        
+    }
 
     
     //Converts room coordinate to world coordinate
