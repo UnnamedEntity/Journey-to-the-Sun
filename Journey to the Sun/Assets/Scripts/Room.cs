@@ -5,22 +5,22 @@ using UnityEngine;
 public class Room : MonoBehaviour
 {
     int[] possibleNoOfRooms = { 2, 3, 4 };
-    int[] probabilityDistribution = { 100, 0, 0 };
+    int[] probabilityDistribution = { 10, 4, 1 };
     List<int> weightedPossibleNoOfRooms = new List<int>();
 
     public int childRooms;
     
-    void Start()
+    public void Awake()
     {
         WeightArray();
         childRooms = GetRandomIndex(weightedPossibleNoOfRooms);
-
     }
     private void Update()
     {
         if (Input.GetKeyDown("h"))
         {
             childRooms = GetRandomIndex(weightedPossibleNoOfRooms);
+            
         }
     }
 
@@ -29,7 +29,6 @@ public class Room : MonoBehaviour
         int childRooms;
         int randomIndex = Random.Range(0, weightedPossibleNoOfRooms.Count);
         childRooms = weightedPossibleNoOfRooms[randomIndex];
-        Debug.Log("Created room has " + childRooms + " children");
         return childRooms;
     }
     void WeightArray()

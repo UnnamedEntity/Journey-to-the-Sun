@@ -2,7 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\Journey to the Sun",
-    "\\Journey to the Sun\\Assets"
+    "\\Journey to the Sun\\Assets",
+    "\\Journey to the Sun\\Assets\\Scripts"
   ],
+  "SelectedNode": "\\Journey to the Sun\\Assets\\Prefabs",
   "PreviewInSolutionExplorer": false
 }
