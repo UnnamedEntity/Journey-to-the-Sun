@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
+
     int[] possibleNoOfRooms = { 2, 3, 4 };
     int[] probabilityDistribution = { 10, 4, 1 };
     List<int> weightedPossibleNoOfRooms = new List<int>();
@@ -14,14 +15,6 @@ public class Room : MonoBehaviour
     {
         WeightArray();
         childRooms = GetRandomIndex(weightedPossibleNoOfRooms);
-    }
-    private void Update()
-    {
-        if (Input.GetKeyDown("h"))
-        {
-            childRooms = GetRandomIndex(weightedPossibleNoOfRooms);
-            
-        }
     }
 
     static int GetRandomIndex(List<int> weightedPossibleNoOfRooms)
