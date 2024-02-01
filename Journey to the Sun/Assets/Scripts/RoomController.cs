@@ -13,7 +13,6 @@ public class RoomController : MonoBehaviour
     public GameObject parentRoom;
 
     public Vector3 worldCoord;
-    public Vector3 playerRoomCoord;
     
     int maxRooms = 12;
     int createdRooms = 1;
@@ -21,8 +20,7 @@ public class RoomController : MonoBehaviour
     int presentChildRooms;
     int iterationAttempts = 0;
     bool removeDoorsCalled = false;
-    GameObject currentPlayerRoom;
-    GameObject previousPlayerRoom;
+    public bool roomGenComplete = false;
     
     private Queue<GameObject> _toCreate = new Queue<GameObject>();
 
@@ -50,7 +48,6 @@ public class RoomController : MonoBehaviour
         parentRoom = GameObject.Find("room(0.00, 0.00, 0.00)");
         listOfCreatedRooms.Add(GetRoomCoord(parentRoom.transform.position));
         childRooms = parentRoom.GetComponent<Room>().childRooms;
-        currentPlayerRoom = GameObject.Find($"room{playerRoomCoord} reference");
         CreateDirectionList(childRooms);
     }
 
@@ -62,39 +59,33 @@ public class RoomController : MonoBehaviour
             SceneManager.RefreshGen();
         }
 
-        if (createdRooms < maxRooms)
+        if (createdRooms < maxRooms && roomGenComplete == false)
         {
             StartIteration();
         }
         else if(removeDoorsCalled == false)
         {
             RemoveDoors();
-            DisableRooms();
             removeDoorsCalled = true;
+        }
+        else
+        {
+            roomGenComplete = true;
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
             SceneManager.RefreshGen();
         }
-
-        if (previousPlayerRoom == null || currentPlayerRoom != previousPlayerRoom)
-        {
-            previousPlayerRoom = currentPlayerRoom;
-            Debug.Log("Previous room is " + previousPlayerRoom);
-            currentPlayerRoom = GameObject.Find($"room{playerRoomCoord} reference");
-            Debug.Log("Current room is " + currentPlayerRoom);
-            
-        }
         
-        if (listOfCreatedRooms.Contains(playerRoomCoord))
-        {
-            currentPlayerRoom.transform.GetChild(0).gameObject.SetActive(true);
-        }
-        else
-        {
-            currentPlayerRoom.transform.GetChild(0).gameObject.SetActive(false);
-        }
+        //if (listOfCreatedRooms.Contains(playerRoomCoord))
+        //{
+        //    currentPlayerRoom.transform.GetChild(0).gameObject.SetActive(true);
+        //}
+        //else
+        //{
+        //    currentPlayerRoom.transform.GetChild(0).gameObject.SetActive(false);
+        //}
     }
 
     void CreateDirectionList(int childRooms)
@@ -123,8 +114,6 @@ public class RoomController : MonoBehaviour
         
         var room = Instantiate(this.room, GetWorldCoord(newRoomCoord), roomTransform.rotation);
         room.name = $"room{newRoomCoord}";
-        var roomReference = new GameObject($"{room.name} reference", typeof(Transform));
-        room.transform.parent = roomReference.transform;
         _toCreate.Enqueue(room);
         createdRooms++;
         presentChildRooms++;
@@ -171,15 +160,6 @@ public class RoomController : MonoBehaviour
         }
     }
 
-    void DisableRooms()
-    {
-        for (int i = 0; i < listOfCreatedRooms.Count; i++)
-        {
-            GameObject room = GameObject.Find($"room{listOfCreatedRooms[i]}");
-            room.SetActive(false);
-        }
-    }
-
     void RemoveCollisions()
     {
         foreach (Vector3 coords in listOfCollisionCoords)
@@ -204,10 +184,6 @@ public class RoomController : MonoBehaviour
         return roomCoord;
     }
 
-    private void FixedUpdate()
-    {
-        playerRoomCoord = GetRoomCoord(playerTransform.position);
-    }
     void RemoveDoors()
     {
         for(int i = 0; i < listOfCreatedRooms.Count; i++)

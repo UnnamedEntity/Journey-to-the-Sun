@@ -18,6 +18,7 @@ public class PlayerBehaviour : MonoBehaviour
     float vertical;
     public float shootDelay = 0.75f;
     public float timeOffset;
+    public Vector3 playerRoomCoord;
 
     public Vector3 leftOffset = new Vector3(-1f, 0, 0);
     public Vector3 rightOffset = new Vector3(1f, 0, 0);
@@ -45,6 +46,7 @@ public class PlayerBehaviour : MonoBehaviour
     //FixedUpdate is called once every fixed frame based on requested framerate (i.e 60fps, 120fps)
     private void FixedUpdate()
     {
+        playerRoomCoord = RoomController.GetRoomCoord(transform.position);
         //Increases the value for time since the last shot until it meets the set shootDelay
         if (timeOffset < shootDelay)
         {

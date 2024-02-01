@@ -10,6 +10,7 @@ TagManager:
   - BottomWall
   - LeftWall
   - RightWall
+  - RoomEnter
   layers:
   - Default
   - TransparentFX
@@ -23,10 +24,10 @@ TagManager:
   - 
   - post
   - Floor lighting
-  - 
-  - 
-  - 
-  - 
+  - enemy
+  - player
+  - skeleton1
+  - skeleton2
   - 
   - 
   - 

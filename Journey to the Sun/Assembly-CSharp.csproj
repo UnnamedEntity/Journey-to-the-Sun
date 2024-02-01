@@ -60,12 +60,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\ProjectileBehaviour.cs" />
+    <Compile Include="Assets\Scripts\Utility Scripts\RoomControllerHelper.cs" />
     <Compile Include="Assets\Scripts\Room.cs" />
+    <Compile Include="Assets\Scripts\RoomEnterCollider.cs" />
     <Compile Include="Assets\Scripts\RoomController.cs" />
-    <Compile Include="Assets\Scripts\spawnAreaBehaviour.cs" />
     <Compile Include="Assets\Scripts\OffsetBehaviour.cs" />
     <Compile Include="Assets\Scripts\CameraBehaviour.cs" />
-    <Compile Include="Assets\Scripts\LeftDoorBehaviour.cs" />
+    <Compile Include="Assets\Scripts\EnemyBehaviour.cs" />
     <Compile Include="Assets\Scripts\DoorController.cs" />
     <Compile Include="Assets\Scripts\PlayerBehaviour.cs" />
     <Compile Include="Assets\Scripts\SceneManagerScript.cs" />
@@ -871,6 +872,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="NavMeshPlus.csproj">
+      <Project>{2AF264E8-BFF6-A3A7-D0B3-158C08DAA824}</Project>
+      <Name>NavMeshPlus</Name>
+    </ProjectReference>
+    <ProjectReference Include="NavMeshPlusEditor.csproj">
+      <Project>{42A2FA02-DF08-3E61-41A7-456E28FAD2A3}</Project>
+      <Name>NavMeshPlusEditor</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
