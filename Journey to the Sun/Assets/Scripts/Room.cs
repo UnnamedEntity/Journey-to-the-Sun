@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using UnityEngine;
 
 public class Room : MonoBehaviour
@@ -11,36 +12,41 @@ public class Room : MonoBehaviour
     public GameObject Player;
     PlayerBehaviour PlayerBehaviour;
 
-    public GameObject RoomCont;
+    public GameObject RoomControllerObject;
     RoomController RoomController;
+
+    public GameObject EnemyPrefabManagerObject;
+    EnemyPrefabManager EnemyPrefabManager;
 
     GameObject randomEnemy;
 
     int numOfEnemies;
 
-    public GameObject[] enemyPrefabs;
     List<int> weightedPossibleNoOfRooms = new List<int>();
 
     public int childRooms;
     
     public void Awake()
     {
-        
         WeightArray();
         childRooms = GetRandomIndex(weightedPossibleNoOfRooms);
     }
     private void Start()
     {
-        enemyPrefabs = new GameObject[5];
-        enemyPrefabs = Resources.LoadAll("Assets/Prefabs/") as GameObject[];
+        
         Player = GameObject.Find("Player");
-        RoomCont = GameObject.Find("RoomController");
-        RoomController = RoomCont.GetComponent<RoomController>();
         PlayerBehaviour = Player.GetComponent<PlayerBehaviour>();
+
+        RoomControllerObject = GameObject.Find("RoomController");
+        RoomController = RoomControllerObject.GetComponent<RoomController>();
+
+        EnemyPrefabManagerObject = GameObject.Find("EnemyPrefabManager");
+        EnemyPrefabManager = EnemyPrefabManagerObject.GetComponent<EnemyPrefabManager>();
+        
         numOfEnemies = Random.Range(1, 6);
         for (int i = 0; i < numOfEnemies; i++)
         {
-            randomEnemy = enemyPrefabs[GetRandomEnemy()];
+            randomEnemy = EnemyPrefabManager.enemyPrefabList[GetRandomEnemy()];
             Instantiate(randomEnemy, GetRandomSpawnVector(), RoomController.roomTransform.rotation);
         }
     }
@@ -105,7 +111,7 @@ public class Room : MonoBehaviour
     
     int GetRandomEnemy()
     {
-        var randomIndex = Random.Range(0, enemyPrefabs.Length);
+        var randomIndex = Random.Range(0, EnemyPrefabManager.enemyPrefabList.Count);
         return randomIndex;
     }
 }

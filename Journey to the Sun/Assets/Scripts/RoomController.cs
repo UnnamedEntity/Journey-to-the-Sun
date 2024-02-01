@@ -9,11 +9,11 @@ public class RoomController : MonoBehaviour
     public GameObject room;
     public Transform roomTransform;
     public Transform playerTransform;
-    public SceneManagerScript SceneManager;
+    public SceneManager SceneManager;
     public GameObject parentRoom;
 
     public Vector3 worldCoord;
-    
+    //private variables
     int maxRooms = 12;
     int createdRooms = 1;
     public int childRooms;
@@ -23,17 +23,11 @@ public class RoomController : MonoBehaviour
     public bool roomGenComplete = false;
     
     private Queue<GameObject> _toCreate = new Queue<GameObject>();
-
+    //lists
     List<Vector3> listOfCollisionCoords = new List<Vector3>();
     List<Vector3> directionList = new List<Vector3>();
     public List<Vector3> listOfCreatedRooms = new List<Vector3>();
     List<Vector3> listOfNullAndReservedRooms = new List<Vector3>();
-
-
-    
-    
-   
-
     void StartIteration()
     {
         iterationAttempts++;
@@ -41,7 +35,6 @@ public class RoomController : MonoBehaviour
         childRooms = parentRoom.GetComponent<Room>().childRooms;
         CreateDirectionList(childRooms);
     }
-    
 
     void Start()
     {
@@ -99,19 +92,15 @@ public class RoomController : MonoBehaviour
         directionListPreset.AddRange(directionArray);
         for (int i = 0; i < childRooms; i++)
         {
-            
             int randomIndex = Random.Range(0, directionListPreset.Count);
             directionList.Add(directionListPreset[randomIndex]);
             directionListPreset.RemoveAt(randomIndex);
         }
-
         CheckAndRemoveCollisions();
-        
     }
 
     void CreateRoom(Vector3 newRoomCoord, Vector3 direction)
     {
-        
         var room = Instantiate(this.room, GetWorldCoord(newRoomCoord), roomTransform.rotation);
         room.name = $"room{newRoomCoord}";
         _toCreate.Enqueue(room);
@@ -135,8 +124,6 @@ public class RoomController : MonoBehaviour
 
     void CheckCollision(Vector3 direction)
     {
-        
-
         if (GameObject.Find($"room{GetRoomCoord(parentRoom.transform.position) + direction}"))
         {
             presentChildRooms++;
