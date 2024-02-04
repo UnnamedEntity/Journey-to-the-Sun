@@ -4998,8 +4998,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
-  RoomCont: {fileID: 0}
-  enemyPrefabs: []
+  RoomControllerObject: {fileID: 0}
+  EnemyPrefabManagerObject: {fileID: 0}
+  PlayArea: {fileID: 0}
   childRooms: 0
 --- !u!1 &4503419877877563367
 GameObject:

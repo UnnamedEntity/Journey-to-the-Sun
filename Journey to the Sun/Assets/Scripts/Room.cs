@@ -9,14 +9,15 @@ public class Room : MonoBehaviour
     int[] possibleNoOfRooms = { 2, 3, 4 };
     int[] probabilityDistribution = { 10, 4, 1 };
 
-    public GameObject Player;
-    PlayerBehaviour PlayerBehaviour;
+    
 
     public GameObject RoomControllerObject;
     RoomController RoomController;
 
     public GameObject EnemyPrefabManagerObject;
     EnemyPrefabManager EnemyPrefabManager;
+
+    EnemyHelper EnemyHelper;
 
     GameObject randomEnemy;
 
@@ -25,6 +26,7 @@ public class Room : MonoBehaviour
     List<int> weightedPossibleNoOfRooms = new List<int>();
 
     public int childRooms;
+
     
     public void Awake()
     {
@@ -33,35 +35,25 @@ public class Room : MonoBehaviour
     }
     private void Start()
     {
-        
-        Player = GameObject.Find("Player");
-        PlayerBehaviour = Player.GetComponent<PlayerBehaviour>();
 
         RoomControllerObject = GameObject.Find("RoomController");
         RoomController = RoomControllerObject.GetComponent<RoomController>();
 
         EnemyPrefabManagerObject = GameObject.Find("EnemyPrefabManager");
         EnemyPrefabManager = EnemyPrefabManagerObject.GetComponent<EnemyPrefabManager>();
+
+        EnemyHelper = FindAnyObjectByType<EnemyHelper>();
         
         numOfEnemies = Random.Range(1, 6);
         for (int i = 0; i < numOfEnemies; i++)
         {
-            randomEnemy = EnemyPrefabManager.enemyPrefabList[GetRandomEnemy()];
-            Instantiate(randomEnemy, GetRandomSpawnVector(), RoomController.roomTransform.rotation);
+            randomEnemy = EnemyPrefabManager.enemyPrefabList[EnemyHelper.GetRandomEnemy()];
+            Instantiate(randomEnemy, transform.position + EnemyHelper.GetRandomVector(), RoomController.roomTransform.rotation, this.transform);
         }
-    }
-    private void Update()
-    {
-        //    foreach (GameObject enemy in prefabList)
-        //    {
-        //        Debug.Log("Enemy " + enemy);
-        //    }
-        //
     }
 
     int GetRandomIndex(List<int> weightedPossibleNoOfRooms)
     {
-        
         int childRooms;
         int randomIndex = Random.Range(0, weightedPossibleNoOfRooms.Count);
         childRooms = weightedPossibleNoOfRooms[randomIndex];
@@ -101,17 +93,5 @@ public class Room : MonoBehaviour
             }
         }
     }
-    Vector3 GetRandomSpawnVector()
-    {
-        var spawnVector = new Vector3(0, 0, 0);
-        var minx = (RoomController.GetWorldCoord(PlayerBehaviour.playerRoomCoord).x - 4) - ((RoomController.GetWorldCoord(PlayerBehaviour.playerRoomCoord).x - 4) / 2);
-        Debug.Log(minx);
-        return spawnVector;
-    }
     
-    int GetRandomEnemy()
-    {
-        var randomIndex = Random.Range(0, EnemyPrefabManager.enemyPrefabList.Count);
-        return randomIndex;
-    }
 }

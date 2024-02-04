@@ -9,6 +9,7 @@ public class RoomEnterCollider : MonoBehaviour
 
     private void Start()
     {
+        DoorController = GameObject.Find("DoorController");
         doorControllerScript = DoorController.GetComponent<DoorController>();
     }
 

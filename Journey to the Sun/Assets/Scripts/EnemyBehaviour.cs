@@ -5,28 +5,36 @@ using UnityEngine.AI;
 
 public class EnemyBehaviour : MonoBehaviour
 {
-    public Transform PlayerPosition;
-    NavMeshAgent agent;
-    GameObject player;
+
+    public GameObject RoomControllerObject;
+    RoomController RoomController;
+
+    public GameObject EnemyHelperObject;
+    EnemyHelper EnemyHelper;
+
+
+    public Vector3 enemyWorldCoord;
+    public Vector3 targetCoord;
+
+    public float moveSpeed = 5;
 
     void Start()
     {
-        player = GameObject.Find("Player");
-        PlayerPosition = player.GetComponent<Transform>();
-        agent = GetComponent<NavMeshAgent>();
-        agent.updateRotation = false;
-        agent.updateUpAxis = false;
+        RoomControllerObject = GameObject.Find("RoomController");
+        RoomController = RoomControllerObject.GetComponent<RoomController>();
+
+        EnemyHelperObject = GameObject.Find("EnemyHelper");
+        EnemyHelper = EnemyHelperObject.GetComponent<EnemyHelper>();
+
+        enemyWorldCoord = this.transform.parent.transform.position;
+        targetCoord = enemyWorldCoord + EnemyHelper.GetRandomVector();
     }
-    private void Update()
+    private void FixedUpdate()
     {
-        agent.SetDestination(PlayerPosition.position + new Vector3(1,0));
-        if (Input.GetKeyDown("e"))
+        transform.position = Vector3.MoveTowards(transform.position, targetCoord, moveSpeed * Time.deltaTime);
+        if(transform.position == targetCoord)
         {
-            agent.speed = 0;
-        }
-        if (Input.GetKeyDown("r"))
-        {
-            agent.speed = 5;
+            targetCoord = enemyWorldCoord + EnemyHelper.GetRandomVector();
         }
     }
 }

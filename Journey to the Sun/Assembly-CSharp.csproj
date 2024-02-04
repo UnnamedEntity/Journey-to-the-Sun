@@ -59,17 +59,19 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2023.1.16f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\EnemyPrefabManager.cs" />
     <Compile Include="Assets\Scripts\ProjectileBehaviour.cs" />
     <Compile Include="Assets\Scripts\Utility Scripts\RoomControllerHelper.cs" />
+    <Compile Include="Assets\Scripts\SceneManager.cs" />
     <Compile Include="Assets\Scripts\Room.cs" />
     <Compile Include="Assets\Scripts\RoomEnterCollider.cs" />
     <Compile Include="Assets\Scripts\RoomController.cs" />
+    <Compile Include="Assets\Scripts\Utility Scripts\EnemyHelper.cs" />
     <Compile Include="Assets\Scripts\OffsetBehaviour.cs" />
     <Compile Include="Assets\Scripts\CameraBehaviour.cs" />
     <Compile Include="Assets\Scripts\EnemyBehaviour.cs" />
     <Compile Include="Assets\Scripts\DoorController.cs" />
     <Compile Include="Assets\Scripts\PlayerBehaviour.cs" />
-    <Compile Include="Assets\Scripts\SceneManagerScript.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

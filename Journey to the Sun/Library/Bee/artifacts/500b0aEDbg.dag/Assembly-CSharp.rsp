@@ -395,13 +395,15 @@
 "Assets/Scripts/CameraBehaviour.cs"
 "Assets/Scripts/DoorController.cs"
 "Assets/Scripts/EnemyBehaviour.cs"
+"Assets/Scripts/EnemyPrefabManager.cs"
 "Assets/Scripts/OffsetBehaviour.cs"
 "Assets/Scripts/PlayerBehaviour.cs"
 "Assets/Scripts/ProjectileBehaviour.cs"
 "Assets/Scripts/Room.cs"
 "Assets/Scripts/RoomController.cs"
 "Assets/Scripts/RoomEnterCollider.cs"
-"Assets/Scripts/SceneManagerScript.cs"
+"Assets/Scripts/SceneManager.cs"
+"Assets/Scripts/Utility Scripts/EnemyHelper.cs"
 "Assets/Scripts/Utility Scripts/RoomControllerHelper.cs"
 -langversion:9.0
 
