@@ -15,7 +15,11 @@ public class RoomEnterCollider : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        doorControllerScript.defeatedEnemies = false;
-        doorControllerScript.EnableDisableDoors();
+        if(collision.gameObject.tag == "Player")
+        {
+            doorControllerScript.defeatedEnemies = false;
+            doorControllerScript.EnableDisableDoors();
+        }
+        
     }
 }

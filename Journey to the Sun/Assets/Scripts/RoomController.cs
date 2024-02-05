@@ -70,15 +70,6 @@ public class RoomController : MonoBehaviour
         {
             SceneManager.RefreshGen();
         }
-        
-        //if (listOfCreatedRooms.Contains(playerRoomCoord))
-        //{
-        //    currentPlayerRoom.transform.GetChild(0).gameObject.SetActive(true);
-        //}
-        //else
-        //{
-        //    currentPlayerRoom.transform.GetChild(0).gameObject.SetActive(false);
-        //}
     }
 
     void CreateDirectionList(int childRooms)

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5075166511860141310}
   - component: {fileID: 7637901783899984717}
   - component: {fileID: 3502165401633623089}
-  m_Layer: 15
+  m_Layer: 9
   m_Name: Skeleton2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -180,4 +180,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3530fde6015f10842a72019016017b82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerPosition: {fileID: 0}
+  RoomControllerObject: {fileID: 0}
+  EnemyHelperObject: {fileID: 0}
+  Player: {fileID: 0}
+  enemyWorldCoord: {x: 0, y: 0, z: 0}
+  targetCoord: {x: 0, y: 0, z: 0}
+  moveSpeed: 5
