@@ -2,10 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyTrackingTrigger : MonoBehaviour
+public class SkullScript : MonoBehaviour
 {
-    public EnemyBehaviour EnemyBehaviour;
-    public EnemyHelper EnemyHelper;
 
     // Start is called before the first frame update
     void Start()

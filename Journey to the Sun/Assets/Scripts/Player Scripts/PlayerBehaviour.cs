@@ -1,16 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour
 {
     //setting variables
     public float movementSpeed = 8f;
+    public int health = 6;
 
     Rigidbody2D body;
     Animator anim;
 
-    public ProjectileBehaviour ProjectilePrefab;
+    public ProjectileBehaviour ProjectileBehaviour;
     public Transform PositionOffset;
     public OffsetBehaviour offsetBehaviour;
 
@@ -69,6 +68,11 @@ public class PlayerBehaviour : MonoBehaviour
         PlayerAttackInput(KeyCode.RightArrow, "Right", rightOffset);
         PlayerAttackInput(KeyCode.UpArrow, "Up", upOffset);
         PlayerAttackInput(KeyCode.DownArrow, "Down", downOffset);
+
+        if(health == 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     void FlipPlayer()
@@ -105,9 +109,9 @@ public class PlayerBehaviour : MonoBehaviour
             offsetBehaviour.transform.position = transform.position + projectileOffset; //Sets position of the offset to the position of the player + the offset vector
             if (timeOffset >= shootDelay) //Allows code to be executed if the time since the last shot has gone past the delay
             {
-                ProjectilePrefab.direction = direction;
+                ProjectileBehaviour.direction = direction;
                 timeOffset = 0;
-                Instantiate(ProjectilePrefab, PositionOffset.position, transform.rotation);
+                Instantiate(ProjectileBehaviour, PositionOffset.position, transform.rotation);
             }
         }
     }

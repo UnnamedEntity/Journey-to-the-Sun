@@ -298,7 +298,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 8
-  ProjectilePrefab: {fileID: 8784185660587669201, guid: c2399a318406f804f838880f726e5046,
+  health: 6
+  ProjectileBehaviour: {fileID: 8784185660587669201, guid: c2399a318406f804f838880f726e5046,
     type: 3}
   PositionOffset: {fileID: 201316036}
   offsetBehaviour: {fileID: 201316037}
@@ -789,8 +790,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e07af825bfaad6047998edcd26b6d813, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyBehaviour: {fileID: 0}
-  EnemyHelper: {fileID: 186487828}
 --- !u!58 &1121860155
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -860,6 +859,8 @@ MonoBehaviour:
     type: 3}
   Skeleton2: {fileID: 8818466259304297648, guid: 482d9055f09db2a4aa096e04ce62ceb1,
     type: 3}
+  Skull: {fileID: 6867880455025862694, guid: 90c28b747579cc04a888ce19bf1de0de, type: 3}
+  Vampire: {fileID: 9163710443389035553, guid: 0978463032d4f4440a389f33f1acfb00, type: 3}
   enemyPrefabList: []
 --- !u!4 &1189204947
 Transform:

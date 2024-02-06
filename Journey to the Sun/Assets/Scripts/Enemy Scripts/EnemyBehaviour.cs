@@ -57,6 +57,20 @@ public class EnemyBehaviour : MonoBehaviour
         }
     }
 
+    IEnumerator Wait()
+    {
+        if (trackPlayer)
+        {
+            targetCoord = Player.transform.position;
+        }
+        else
+        {
+            yield return new WaitForSeconds(Random.Range(1, 4));
+            targetCoord = enemyWorldCoord + EnemyHelper.GetRandomVector();
+        }
+        coroutineStarted = false;
+    }
+
     void FlipSpriteLeft()
     {
         Vector3 currentScaleX = transform.localScale;
@@ -99,20 +113,5 @@ public class EnemyBehaviour : MonoBehaviour
         {
             trackPlayer = false;
         }
-    }
-
-    IEnumerator Wait()
-    {
-        
-        if (trackPlayer)
-        {
-            targetCoord = Player.transform.position;
-        }
-        else
-        {
-            yield return new WaitForSeconds(Random.Range(1, 4));
-            targetCoord = enemyWorldCoord + EnemyHelper.GetRandomVector();
-        }
-        coroutineStarted = false;
     }
 }

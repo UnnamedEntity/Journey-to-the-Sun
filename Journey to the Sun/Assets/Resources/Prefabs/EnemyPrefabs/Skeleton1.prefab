@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 2673639025001113948}
   - component: {fileID: 521270923364243758}
   - component: {fileID: 2726013661116516230}
+  - component: {fileID: 4172181606781361309}
   m_Layer: 9
   m_Name: Skeleton1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -202,3 +203,18 @@ MonoBehaviour:
   enemyWorldCoord: {x: 0, y: 0, z: 0}
   targetCoord: {x: 0, y: 0, z: 0}
   moveSpeed: 5
+--- !u!114 &4172181606781361309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2874429047602019764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3c2658a8b281d34fac891dcdb7d6594, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 0}
+  Skeleton1Projectile: {fileID: 495916055245193410, guid: 394bb91c14a0cd44ca1e9795874a2bd4,
+    type: 3}
