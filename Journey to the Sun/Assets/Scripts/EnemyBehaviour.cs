@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+//using System.Numerics;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -13,7 +14,6 @@ public class EnemyBehaviour : MonoBehaviour
     EnemyHelper EnemyHelper;
 
     public GameObject Player;
-
 
     public Vector3 enemyWorldCoord;
     public Vector3 targetCoord;
@@ -36,14 +36,52 @@ public class EnemyBehaviour : MonoBehaviour
         enemyWorldCoord = transform.parent.transform.position;
         targetCoord = enemyWorldCoord + EnemyHelper.GetRandomVector();
     }
+
     private void FixedUpdate()
     {
-        
+
         transform.position = Vector3.MoveTowards(transform.position, targetCoord, moveSpeed * Time.deltaTime);
-        if(transform.position == targetCoord & !coroutineStarted)
+        if (transform.position == targetCoord & !coroutineStarted)
         {
             coroutineStarted = true;
             StartCoroutine(Wait());
+        }
+
+        if (targetCoord.x > transform.position.x)
+        {
+            FlipSpriteLeft();
+        }
+        else if((targetCoord.x < transform.position.x))
+        {
+            FlipSpriteRight();
+        }
+    }
+
+    void FlipSpriteLeft()
+    {
+        Vector3 currentScaleX = transform.localScale;
+        if(currentScaleX.x > 0)
+        {
+            return;
+        }
+        else
+        {
+            currentScaleX.x *= -1;
+            transform.localScale = currentScaleX;
+        }
+    }
+
+    void FlipSpriteRight()
+    {
+        Vector3 currentScaleX = transform.localScale;
+        if (currentScaleX.x < 0)
+        {
+            return;
+        }
+        else
+        {
+            currentScaleX.x *= -1;
+            transform.localScale = currentScaleX;
         }
     }
 
@@ -77,5 +115,4 @@ public class EnemyBehaviour : MonoBehaviour
         }
         coroutineStarted = false;
     }
-
 }

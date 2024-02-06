@@ -244,7 +244,7 @@ MonoBehaviour:
     type: 3}
   playerTransform: {fileID: 434160401}
   SceneManager: {fileID: 484603960}
-  parentRoom: {fileID: 1843389457}
+  parentRoom: {fileID: 0}
   worldCoord: {x: 0, y: 0, z: 0}
   childRooms: 0
   roomGenComplete: 0
@@ -960,36 +960,6 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2737400641023342486, guid: b00f2bbf9b34e984b9039699c5d93273,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2737400641023342486, guid: b00f2bbf9b34e984b9039699c5d93273,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 2737400641023342486, guid: b00f2bbf9b34e984b9039699c5d93273,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 2737400641023342486, guid: b00f2bbf9b34e984b9039699c5d93273,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2737400641023342486, guid: b00f2bbf9b34e984b9039699c5d93273,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2737400641023342486, guid: b00f2bbf9b34e984b9039699c5d93273,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -90
-      objectReference: {fileID: 0}
     - target: {fileID: 4447096418427931970, guid: b00f2bbf9b34e984b9039699c5d93273,
         type: 3}
       propertyPath: m_Enabled
@@ -1111,12 +1081,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1843389457 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4503419877868752331, guid: b00f2bbf9b34e984b9039699c5d93273,
-    type: 3}
-  m_PrefabInstance: {fileID: 1423149408}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
