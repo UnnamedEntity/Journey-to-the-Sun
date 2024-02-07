@@ -5,8 +5,15 @@ using UnityEngine;
 public class Skeleton1Script : MonoBehaviour
 {
     public GameObject Player;
+    PlayerBehaviour PlayerBehaviour;
+
+    public GameObject RoomControllerObject;
+    RoomController RoomController;
 
     public GameObject Skeleton1Projectile;
+
+    EnemyBehaviour EnemyBehav;
+
     int randomTime;
     float timeElapsed;
 
@@ -17,6 +24,13 @@ public class Skeleton1Script : MonoBehaviour
     void Start()
     {
         Player = GameObject.Find("Player");
+        PlayerBehaviour = Player.GetComponent<PlayerBehaviour>();
+
+        RoomControllerObject = GameObject.Find("RoomController");
+        RoomController = RoomControllerObject.GetComponent<RoomController>();
+
+        EnemyBehav = GetComponent<EnemyBehaviour>();
+
         randomTime = Random.Range(2, 5);
     }
 
@@ -29,11 +43,19 @@ public class Skeleton1Script : MonoBehaviour
         }
         else
         {
-            Instantiate(Skeleton1Projectile, transform.position, transform.rotation);
+            CreateProjectile();
             timeElapsed = 0;
             randomTime = Random.Range(5, 8);
         }
         
+    }
+
+    void CreateProjectile()
+    {
+        if (RoomController.GetWorldCoord(PlayerBehaviour.playerRoomCoord) == EnemyBehav.enemyWorldCoord)
+        {
+            Instantiate(Skeleton1Projectile, transform.position, transform.rotation);
+        }
     }
 
 }

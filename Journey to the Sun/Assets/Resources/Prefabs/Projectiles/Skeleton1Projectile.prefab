@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4831527114802842492}
   - component: {fileID: 329444330643470546}
   - component: {fileID: 6782007970038157896}
+  - component: {fileID: 2322340828656501344}
   m_Layer: 0
   m_Name: Skeleton1Projectile
   m_TagString: Projectile
@@ -111,6 +112,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b287c3610c1ff92499c328d5d27805e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 0}
+--- !u!114 &2322340828656501344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 495916055245193410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c784e3d823e0eb14d97e78731f7aea61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 0}
+  PlayerBehaviour: {fileID: 0}
 --- !u!1 &7576178267448416979
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,17 +5,26 @@ using UnityEngine;
 public class Skeleton1ProjectileBehaviour : MonoBehaviour
 {
     SpriteRenderer sprite;
-    // Start is called before the first frame update
+
+    public GameObject Player;
+    PlayerBehaviour PlayerBehaviour;
+
+    Vector3 direction;
+
+    int speed = 7;
+
     void Start()
     {
+        Player = GameObject.Find("Player");
         sprite = GetComponentInChildren<SpriteRenderer>();
         sprite.sortingOrder = 1;
+        direction = Player.transform.position.normalized; 
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
+        Debug.Log(direction);
+        transform.position += direction * speed * Time.deltaTime;
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
