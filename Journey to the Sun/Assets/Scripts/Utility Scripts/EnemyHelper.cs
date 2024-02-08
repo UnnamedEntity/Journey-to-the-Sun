@@ -15,8 +15,8 @@ public class EnemyHelper : MonoBehaviour
         var maxY = 5;
         var xCoord = Random.Range(minX, maxX);
         var yCoord = Random.Range(minY, maxY);
-        var spawnVector = new Vector3(xCoord, yCoord, 0);
-        return spawnVector;
+        var Vector = new Vector3(xCoord, yCoord, 0);
+        return Vector;
     }
 
 

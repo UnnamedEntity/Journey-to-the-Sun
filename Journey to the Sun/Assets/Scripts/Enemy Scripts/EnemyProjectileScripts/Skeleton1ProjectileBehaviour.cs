@@ -9,7 +9,12 @@ public class Skeleton1ProjectileBehaviour : MonoBehaviour
     public GameObject Player;
     PlayerBehaviour PlayerBehaviour;
 
-    Vector3 direction;
+    public GameObject Enemy;
+    EnemyBehaviour EnemyBehaviour;
+
+    public Vector2 playerPosition;
+    public Vector2 enemyPosition;
+    Vector2 direction;
 
     int speed = 7;
 
@@ -18,13 +23,17 @@ public class Skeleton1ProjectileBehaviour : MonoBehaviour
         Player = GameObject.Find("Player");
         sprite = GetComponentInChildren<SpriteRenderer>();
         sprite.sortingOrder = 1;
-        direction = Player.transform.position.normalized; 
+
+        //transform.position = new Vector3(enemyPosition.x, enemyPosition.y, 0);
+        playerPosition = new Vector2(Player.transform.position.x, Player.transform.position.y); 
+        enemyPosition = new Vector2(transform.position.x, transform.position.y);
+        direction = playerPosition - enemyPosition;
     }
 
     void FixedUpdate()
     {
-        Debug.Log(direction);
-        transform.position += direction * speed * Time.deltaTime;
+        Debug.Log(direction.normalized);
+        transform.position += new Vector3(direction.normalized.x, direction.normalized.y, 0) * speed * Time.deltaTime;
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 2558398559196909893}
   - component: {fileID: 3406669153409640745}
   - component: {fileID: 2424432103093819775}
+  - component: {fileID: 737834441176673959}
   m_Layer: 0
   m_Name: Skull
   m_TagString: Enemy
@@ -190,6 +191,7 @@ MonoBehaviour:
   Player: {fileID: 0}
   enemyWorldCoord: {x: 0, y: 0, z: 0}
   targetCoord: {x: 0, y: 0, z: 0}
+  rb: {fileID: 0}
   moveSpeed: 5
 --- !u!95 &2558398559196909893
 Animator:
@@ -261,3 +263,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 440204554b293044bb019a2682b5caa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!50 &737834441176673959
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6867880455025862694}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

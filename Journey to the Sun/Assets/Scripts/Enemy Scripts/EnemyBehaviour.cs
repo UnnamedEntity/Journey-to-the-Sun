@@ -18,6 +18,8 @@ public class EnemyBehaviour : MonoBehaviour
     public Vector3 enemyWorldCoord;
     public Vector3 targetCoord;
 
+    public Rigidbody2D rb;
+
     public float moveSpeed = 5;
 
     private bool coroutineStarted = false;
@@ -25,6 +27,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     void Start()
     {
+        enemyWorldCoord = transform.parent.position;
         RoomControllerObject = GameObject.Find("RoomController");
         RoomController = RoomControllerObject.GetComponent<RoomController>();
 
@@ -33,14 +36,20 @@ public class EnemyBehaviour : MonoBehaviour
 
         Player = GameObject.Find("Player");
 
-        enemyWorldCoord = transform.parent.transform.position;
+        rb = GetComponent<Rigidbody2D>();
+        rb.freezeRotation = true;
+
+        
+        Debug.Log("Parent position of enemy is " + enemyWorldCoord);
         targetCoord = enemyWorldCoord + EnemyHelper.GetRandomVector();
     }
 
     private void FixedUpdate()
     {
 
-        transform.position = Vector3.MoveTowards(transform.position, targetCoord, moveSpeed * Time.deltaTime);
+        //transform.position = Vector3.MoveTowards(transform.position, targetCoord, moveSpeed * Time.deltaTime);
+        rb.MovePosition(transform.position + targetCoord.normalized * moveSpeed * Time.deltaTime);
+
         if (transform.position == targetCoord & !coroutineStarted)
         {
             coroutineStarted = true;
@@ -112,6 +121,22 @@ public class EnemyBehaviour : MonoBehaviour
         if (collision.gameObject.tag == "EnemyTrackingTrigger")
         {
             trackPlayer = false;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Enemy")
+        {
+            collision.collider.enabled = false;
+        }
+        
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Enemy")
+        {
+            collision.collider.enabled = true;
         }
     }
 }
