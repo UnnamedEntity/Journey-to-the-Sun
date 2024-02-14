@@ -261,3 +261,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 440204554b293044bb019a2682b5caa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 0}
+  RoomControllerObject: {fileID: 0}
+  SkullProjectile: {fileID: 495916055245193410, guid: 44d443e803764b140ab0bf9452da8860,
+    type: 3}
+  direction: {x: 0, y: 0, z: 0}
