@@ -10,7 +10,7 @@ public class SkullScript : MonoBehaviour
     public GameObject RoomControllerObject;
     RoomController RoomController;
 
-    public GameObject SkullProjectile;
+    public GameObject SkullProjectiles;
 
     EnemyBehaviour EnemyBehav;
 
@@ -56,14 +56,7 @@ public class SkullScript : MonoBehaviour
     {
         if (RoomController.GetWorldCoord(PlayerBehaviour.playerRoomCoord) == EnemyBehav.enemyWorldCoord)
         {
-            direction = Vector3.up;
-            Instantiate(SkullProjectile, transform.position, transform.rotation);
-            direction = Vector3.down;
-            Instantiate(SkullProjectile, transform.position, transform.rotation);
-            direction = Vector3.left;
-            Instantiate(SkullProjectile, transform.position, transform.rotation);
-            direction = Vector3.right;
-            Instantiate(SkullProjectile, transform.position, transform.rotation);
+            Instantiate(SkullProjectiles, transform.position, transform.rotation);
         }
     }
 }

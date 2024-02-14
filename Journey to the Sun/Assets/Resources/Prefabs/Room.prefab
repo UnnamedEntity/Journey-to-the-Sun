@@ -4997,10 +4997,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9daf512fc4f338049b986ec347fb41b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 0}
   RoomControllerObject: {fileID: 0}
   EnemyPrefabManagerObject: {fileID: 0}
-  PlayArea: {fileID: 0}
   childRooms: 0
 --- !u!1 &4503419877877563367
 GameObject:
@@ -5654,7 +5652,7 @@ GameObject:
   - component: {fileID: 4503419878459322525}
   m_Layer: 0
   m_Name: DynamicWall Tilemap
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

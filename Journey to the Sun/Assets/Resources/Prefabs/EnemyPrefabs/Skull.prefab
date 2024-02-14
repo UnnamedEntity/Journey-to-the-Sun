@@ -263,6 +263,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
   RoomControllerObject: {fileID: 0}
-  SkullProjectile: {fileID: 495916055245193410, guid: 44d443e803764b140ab0bf9452da8860,
+  SkullProjectiles: {fileID: 7163648446003240798, guid: fb72c52d00016844a96c5a33a6fba3de,
     type: 3}
+  SkullProjectileBehaviour: {fileID: 0}
   direction: {x: 0, y: 0, z: 0}
