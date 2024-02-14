@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 8650047778988962597}
   - component: {fileID: 2723240517035989877}
   - component: {fileID: 5075166511860141310}
+  - component: {fileID: 7637901783899984717}
   - component: {fileID: 3502165401633623089}
   - component: {fileID: 7245352013259123701}
   - component: {fileID: 8896973568225602923}
-  - component: {fileID: 6448925105908693007}
   m_Layer: 9
   m_Name: Skeleton2
   m_TagString: Enemy
@@ -148,6 +148,28 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: -0.009, y: 0}
   m_Radius: 0.04
+--- !u!195 &7637901783899984717
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8818466259304297648}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.06
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 0
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 0.16000001
+  m_BaseOffset: 0.080000006
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!114 &3502165401633623089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,7 +187,6 @@ MonoBehaviour:
   Player: {fileID: 0}
   enemyWorldCoord: {x: 0, y: 0, z: 0}
   targetCoord: {x: 0, y: 0, z: 0}
-  rb: {fileID: 0}
   moveSpeed: 5
 --- !u!114 &7245352013259123701
 MonoBehaviour:
@@ -191,30 +212,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 196b570daa8562242aae5d613c317715, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!50 &6448925105908693007
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8818466259304297648}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0

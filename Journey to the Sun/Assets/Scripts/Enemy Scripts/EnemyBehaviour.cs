@@ -17,9 +17,6 @@ public class EnemyBehaviour : MonoBehaviour
 
     public Vector3 enemyWorldCoord;
     public Vector3 targetCoord;
-    public Vector3 direction;
-
-    public Rigidbody2D rb;
 
     public float moveSpeed = 5;
 
@@ -28,7 +25,6 @@ public class EnemyBehaviour : MonoBehaviour
 
     void Start()
     {
-        enemyWorldCoord = transform.parent.position;
         RoomControllerObject = GameObject.Find("RoomController");
         RoomController = RoomControllerObject.GetComponent<RoomController>();
 
@@ -37,26 +33,14 @@ public class EnemyBehaviour : MonoBehaviour
 
         Player = GameObject.Find("Player");
 
-        rb = GetComponent<Rigidbody2D>();
-        rb.freezeRotation = true;
-
-        direction = (targetCoord - transform.position).normalized;
-        
-        Debug.Log("Parent position of enemy is " + enemyWorldCoord);
+        enemyWorldCoord = transform.parent.transform.position;
         targetCoord = enemyWorldCoord + EnemyHelper.GetRandomVector();
-
     }
 
     private void FixedUpdate()
     {
 
-        //transform.position = Vector3.MoveTowards(transform.position, targetCoord, moveSpeed * Time.deltaTime);
-        if (transform.position != targetCoord)
-        {
-            rb.MovePosition(transform.position + direction * moveSpeed * Time.deltaTime);
-        }
-        
-
+        transform.position = Vector3.MoveTowards(transform.position, targetCoord, moveSpeed * Time.deltaTime);
         if (transform.position == targetCoord & !coroutineStarted)
         {
             coroutineStarted = true;
@@ -67,7 +51,7 @@ public class EnemyBehaviour : MonoBehaviour
         {
             FlipSpriteLeft();
         }
-        else if(targetCoord.x < transform.position.x)
+        else if((targetCoord.x < transform.position.x))
         {
             FlipSpriteRight();
         }
@@ -129,18 +113,5 @@ public class EnemyBehaviour : MonoBehaviour
         {
             trackPlayer = false;
         }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        //if(collision.gameObject.tag == "Enemy")
-        //{
-        //    collision.collider.enabled = false;
-        //}
-        
-    }
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-            //collision.collider.enabled = true;
     }
 }

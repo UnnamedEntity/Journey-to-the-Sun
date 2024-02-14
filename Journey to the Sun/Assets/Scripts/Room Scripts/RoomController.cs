@@ -28,6 +28,7 @@ public class RoomController : MonoBehaviour
     List<Vector3> directionList = new List<Vector3>();
     public List<Vector3> listOfCreatedRooms = new List<Vector3>();
     List<Vector3> listOfNullAndReservedRooms = new List<Vector3>();
+
     void StartIteration()
     {
         iterationAttempts++;

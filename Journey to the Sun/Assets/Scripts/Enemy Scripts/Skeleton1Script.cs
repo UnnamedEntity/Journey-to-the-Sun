@@ -37,23 +37,16 @@ public class Skeleton1Script : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        //Debug.Log("Player room is " + PlayerBehaviour.playerRoomCoord);
-        //Debug.Log("Enemy room is " + RoomController.GetRoomCoord(EnemyBehav.enemyWorldCoord));
-        if (PlayerBehaviour.playerRoomCoord == RoomController.GetRoomCoord(EnemyBehav.enemyWorldCoord))
+        if(timeElapsed < randomTime)
         {
-            
-            if (timeElapsed < randomTime)
-            {
-                timeElapsed += Time.deltaTime;
-            }
-            else
-            {
-                CreateProjectile();
-                timeElapsed = 0;
-                randomTime = Random.Range(2, 4);
-            }
+            timeElapsed += Time.deltaTime;
         }
-        
+        else
+        {
+            CreateProjectile();
+            timeElapsed = 0;
+            randomTime = Random.Range(5, 8);
+        }
         
     }
 
@@ -61,7 +54,7 @@ public class Skeleton1Script : MonoBehaviour
     {
         if (RoomController.GetWorldCoord(PlayerBehaviour.playerRoomCoord) == EnemyBehav.enemyWorldCoord)
         {
-            Instantiate(Skeleton1Projectile, transform.position, transform.rotation, transform.parent.transform);
+            Instantiate(Skeleton1Projectile, transform.position, transform.rotation);
         }
     }
 
