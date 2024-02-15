@@ -7,72 +7,50 @@ public class DoorController : MonoBehaviour
     public bool defeatedEnemies = false;
     bool disabledDoors = false;
 
-    GameObject currentRoom;
+    public GameObject currentRoom;
     public GameObject Player;
     PlayerBehaviour PlayerBehaviour;
+
+    public List<GameObject> clearedRooms = new List<GameObject>();
 
     private void Start()
     {
         Player = GameObject.Find("Player");
-        PlayerBehaviour = Player.GetComponent<PlayerBehaviour>();    
+        PlayerBehaviour = Player.GetComponent<PlayerBehaviour>();
+        clearedRooms.Add(GameObject.Find("room(0.00, 0.00, 0.00)"));
     }
 
     void Update()
     {
         currentRoom = GameObject.Find($"room{PlayerBehaviour.playerRoomCoord}");
-        if (currentRoom.transform.childCount == 11 && !disabledDoors)
+        if (currentRoom.transform.childCount == 11 && !clearedRooms.Contains(currentRoom))
         {
-            defeatedEnemies = true;
-            Debug.Log("Defeated enemies");
+            clearedRooms.Add(currentRoom);
         }
-        if (Input.GetKeyDown(KeyCode.I))
+        if (clearedRooms.Contains(currentRoom))
         {
-            defeatedEnemies = true;
-        }
-        if (defeatedEnemies == true)
-        {
-            defeatedEnemies = false;
-            EnableDoors();
-            disabledDoors = true;
+            DisableDoors();
         }
     }
 
     public void EnableDoors()
     {
-        GameObject[] doors = GameObject.FindGameObjectsWithTag("Door"); //Creates an array of every gameobject with the tag "Door"
+        GameObject[] doors = GameObject.FindGameObjectsWithTag("Door"); 
 
-        foreach (GameObject door in doors) //Iterates through the array, applying code to every object in the array
+        foreach (GameObject door in doors) 
         {
-            if (door.GetComponent<Renderer>().enabled) //Checks to see if the renderer is enabled or not
-            {
-                //Disables both the renderer and 2D collider of the object
-                door.GetComponent<Renderer>().enabled = false;
-                door.GetComponent<Collider2D>().enabled = false;
-            }
-            else
-            {
-                door.GetComponent<Renderer>().enabled = true;
-                door.GetComponent<Collider2D>().enabled = true;
-            }
+            door.GetComponent<Renderer>().enabled = true;
+            door.GetComponent<Collider2D>().enabled = true;
         }
     }
     public void DisableDoors()
     {
-        GameObject[] doors = GameObject.FindGameObjectsWithTag("Door"); //Creates an array of every gameobject with the tag "Door"
+        GameObject[] doors = GameObject.FindGameObjectsWithTag("Door"); 
 
-        foreach (GameObject door in doors) //Iterates through the array, applying code to every object in the array
+        foreach (GameObject door in doors) 
         {
-            if (door.GetComponent<Renderer>().enabled) //Checks to see if the renderer is enabled or not
-            {
-                //Disables both the renderer and 2D collider of the object
-                door.GetComponent<Renderer>().enabled = false;
-                door.GetComponent<Collider2D>().enabled = false;
-            }
-            else
-            {
-                door.GetComponent<Renderer>().enabled = true;
-                door.GetComponent<Collider2D>().enabled = true;
-            }
+            door.GetComponent<Renderer>().enabled = false;
+            door.GetComponent<Collider2D>().enabled = false;
         }
     }
 }
