@@ -16,9 +16,6 @@ public class Skeleton1Script : MonoBehaviour
 
     int randomTime;
     float timeElapsed;
-
-    Vector3 targetCoord;
-    int projectileSpeed = 5;
     
     // Start is called before the first frame update
     void Start()
@@ -47,7 +44,10 @@ public class Skeleton1Script : MonoBehaviour
             timeElapsed = 0;
             randomTime = Random.Range(5, 8);
         }
-        
+        if (EnemyBehav.health == 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     void CreateProjectile()
@@ -57,5 +57,4 @@ public class Skeleton1Script : MonoBehaviour
             Instantiate(Skeleton1Projectile, transform.position, transform.rotation);
         }
     }
-
 }

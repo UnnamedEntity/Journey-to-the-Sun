@@ -4940,6 +4940,7 @@ GameObject:
   - component: {fileID: 4503419877868752330}
   - component: {fileID: 2175246160408203387}
   - component: {fileID: 41310513596190885}
+  - component: {fileID: 4903878170102803252}
   m_Layer: 0
   m_Name: Room
   m_TagString: Room
@@ -5000,6 +5001,20 @@ MonoBehaviour:
   RoomControllerObject: {fileID: 0}
   EnemyPrefabManagerObject: {fileID: 0}
   childRooms: 0
+--- !u!114 &4903878170102803252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4503419877868752331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 302c41b81336632498db3009d117b197, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defeatedEnemies: 0
+  Player: {fileID: 0}
 --- !u!1 &4503419877877563367
 GameObject:
   m_ObjectHideFlags: 0
@@ -7410,6 +7425,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defeatedEnemies: 0
+  Player: {fileID: 0}
 --- !u!1 &9172754240265749938
 GameObject:
   m_ObjectHideFlags: 0

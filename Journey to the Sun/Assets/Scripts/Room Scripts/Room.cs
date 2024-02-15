@@ -21,11 +21,13 @@ public class Room : MonoBehaviour
 
     GameObject randomEnemy;
 
-    int numOfEnemies;
+    int maxNumOfEnemies;
+    int currentNumOfEnemies;
 
     List<int> weightedPossibleNoOfRooms = new List<int>();
 
     public int childRooms;
+
 
     
     public void Awake()
@@ -44,8 +46,8 @@ public class Room : MonoBehaviour
 
         EnemyHelper = FindAnyObjectByType<EnemyHelper>();
         
-        numOfEnemies = Random.Range(1, 6);
-        for (int i = 0; i < numOfEnemies; i++)
+        maxNumOfEnemies = Random.Range(1, 6);
+        for (int i = 0; i < maxNumOfEnemies; i++)
         {
             randomEnemy = EnemyPrefabManager.enemyPrefabList[EnemyHelper.GetRandomEnemy()];
             Instantiate(randomEnemy, transform.position + EnemyHelper.GetRandomVector(), RoomController.roomTransform.rotation, this.transform);

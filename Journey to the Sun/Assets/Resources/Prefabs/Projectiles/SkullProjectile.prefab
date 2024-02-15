@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1188531209996789027}
   m_Layer: 0
   m_Name: SkullProjectile
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -126,6 +126,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 865e73ddf08784e41b886ccc181a0ccc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 0}
+  SkullScriptObject: {fileID: 0}
+  direction: {x: 0, y: 0, z: 0}
+  speed: 7
 --- !u!1 &7576178267448416979
 GameObject:
   m_ObjectHideFlags: 0

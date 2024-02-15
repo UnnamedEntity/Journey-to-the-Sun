@@ -200,9 +200,11 @@ MonoBehaviour:
   RoomControllerObject: {fileID: 0}
   EnemyHelperObject: {fileID: 0}
   Player: {fileID: 0}
+  rend: {fileID: 2158555486758987920}
   enemyWorldCoord: {x: 0, y: 0, z: 0}
   targetCoord: {x: 0, y: 0, z: 0}
   moveSpeed: 5
+  health: 3
 --- !u!114 &4172181606781361309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,5 +218,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
+  RoomControllerObject: {fileID: 0}
   Skeleton1Projectile: {fileID: 495916055245193410, guid: 394bb91c14a0cd44ca1e9795874a2bd4,
     type: 3}

@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class SkullScript : MonoBehaviour
 {
+
     public GameObject Player;
     PlayerBehaviour PlayerBehaviour;
 
@@ -13,12 +15,12 @@ public class SkullScript : MonoBehaviour
     public GameObject SkullProjectiles;
 
     EnemyBehaviour EnemyBehav;
+    public Light2D light2D;
+    Color blue = new Color(0.12549019607f, 1, 0.96862745098f);
 
     int randomTime;
     float timeElapsed;
 
-    Vector3 targetCoord;
-    int projectileSpeed = 5;
 
     public Vector3 direction;
 
@@ -58,5 +60,20 @@ public class SkullScript : MonoBehaviour
         {
             Instantiate(SkullProjectiles, transform.position, transform.rotation);
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "PlayerProjectile")
+        {
+            StartCoroutine(SkullFlashRed());
+        }
+    }
+
+    IEnumerator SkullFlashRed()
+    {
+        light2D.color = Color.red;
+        yield return new WaitForSeconds(0.2f);
+        light2D.color = blue;
     }
 }

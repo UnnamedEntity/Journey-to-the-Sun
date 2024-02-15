@@ -11,6 +11,7 @@ public class RoomController : MonoBehaviour
     public Transform playerTransform;
     public SceneManager SceneManager;
     public GameObject parentRoom;
+    
 
     public Vector3 worldCoord;
     //private variables

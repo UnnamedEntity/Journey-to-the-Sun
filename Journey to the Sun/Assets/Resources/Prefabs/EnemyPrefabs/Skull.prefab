@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2153996569484813623}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0.026086785, w: 0.9996597}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.11111112, y: 0.11111112, z: 1}
   m_ConstrainProportionsScale: 0
@@ -188,9 +188,11 @@ MonoBehaviour:
   RoomControllerObject: {fileID: 0}
   EnemyHelperObject: {fileID: 0}
   Player: {fileID: 0}
+  rend: {fileID: 8538557515777237283}
   enemyWorldCoord: {x: 0, y: 0, z: 0}
   targetCoord: {x: 0, y: 0, z: 0}
   moveSpeed: 5
+  health: 5
 --- !u!95 &2558398559196909893
 Animator:
   serializedVersion: 7
@@ -265,5 +267,5 @@ MonoBehaviour:
   RoomControllerObject: {fileID: 0}
   SkullProjectiles: {fileID: 7163648446003240798, guid: fb72c52d00016844a96c5a33a6fba3de,
     type: 3}
-  SkullProjectileBehaviour: {fileID: 0}
+  light2D: {fileID: 4554884996066336201}
   direction: {x: 0, y: 0, z: 0}

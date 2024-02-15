@@ -18,8 +18,6 @@ public class EnemyProjectileBehaviour : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             Destroy(gameObject);
-            PlayerBehaviour.health -= 1;
-            Debug.Log(PlayerBehaviour.health);
         }
         if(collision.gameObject.tag == "Wall" || collision.gameObject.tag == "Door")
         {

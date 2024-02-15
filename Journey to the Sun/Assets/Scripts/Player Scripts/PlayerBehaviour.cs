@@ -1,10 +1,14 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class PlayerBehaviour : MonoBehaviour
 {
-    //setting variables
+    //Modifiable properties
     public float movementSpeed = 8f;
     public int health = 6;
+    public float attackDamage = 1f;
+    public float shootDelay = 0.75f;
+    bool invinsible = false;
 
     Rigidbody2D body;
     Animator anim;
@@ -12,10 +16,11 @@ public class PlayerBehaviour : MonoBehaviour
     public ProjectileBehaviour ProjectileBehaviour;
     public Transform PositionOffset;
     public OffsetBehaviour offsetBehaviour;
+    public SpriteRenderer rend;
 
     float horizontal;
     float vertical;
-    public float shootDelay = 0.75f;
+    
     public float timeOffset;
     public Vector3 playerRoomCoord;
 
@@ -115,4 +120,26 @@ public class PlayerBehaviour : MonoBehaviour
             }
         }
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if((collision.gameObject.tag == "Projectile" || collision.gameObject.tag == "Enemy") && !invinsible)
+        {
+            StartCoroutine(FlashRed());
+            StartCoroutine(PlayerHurt());
+        }
+    }
+    IEnumerator FlashRed()
+    {
+        rend.color = Color.red;
+        yield return new WaitForSeconds(0.1f);
+        rend.color = Color.white;
+    }
+    IEnumerator PlayerHurt()
+    {
+        health -= 1;
+        invinsible = true;
+        yield return new WaitForSeconds(1);
+        invinsible = false;
+    }
+
 }

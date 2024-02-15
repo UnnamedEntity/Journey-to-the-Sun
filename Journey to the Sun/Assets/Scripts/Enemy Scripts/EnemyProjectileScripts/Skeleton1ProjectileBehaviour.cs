@@ -23,7 +23,6 @@ public class Skeleton1ProjectileBehaviour : MonoBehaviour
 
     void FixedUpdate()
     {
-        Debug.Log(direction);
         transform.position += direction * speed * Time.deltaTime;
     }
 }

@@ -18,7 +18,7 @@ public class RoomEnterCollider : MonoBehaviour
         if(collision.gameObject.tag == "Player")
         {
             doorControllerScript.defeatedEnemies = false;
-            doorControllerScript.EnableDisableDoors();
+            doorControllerScript.EnableDoors();
         }
         
     }

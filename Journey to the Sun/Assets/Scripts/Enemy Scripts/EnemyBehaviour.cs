@@ -14,11 +14,17 @@ public class EnemyBehaviour : MonoBehaviour
     EnemyHelper EnemyHelper;
 
     public GameObject Player;
+    public SpriteRenderer rend;
 
     public Vector3 enemyWorldCoord;
     public Vector3 targetCoord;
 
     public float moveSpeed = 5;
+
+    public int health;
+
+    Color white = Color.white;
+    Color red = Color.red;
 
     private bool coroutineStarted = false;
     private bool trackPlayer = false;
@@ -51,9 +57,13 @@ public class EnemyBehaviour : MonoBehaviour
         {
             FlipSpriteLeft();
         }
-        else if((targetCoord.x < transform.position.x))
+        else if ((targetCoord.x < transform.position.x))
         {
             FlipSpriteRight();
+        }
+        if(health == 0)
+        {
+            Destroy(gameObject);
         }
     }
 
@@ -113,5 +123,21 @@ public class EnemyBehaviour : MonoBehaviour
         {
             trackPlayer = false;
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "PlayerProjectile")
+        {
+            health -= 1;
+            StartCoroutine(FlashRed());
+        }
+    }
+
+    IEnumerator FlashRed()
+    {
+        rend.color = red;
+        yield return new WaitForSeconds(0.1f);
+        rend.color = white;
     }
 }
