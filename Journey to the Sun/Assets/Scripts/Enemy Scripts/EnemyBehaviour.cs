@@ -20,7 +20,6 @@ public class EnemyBehaviour : MonoBehaviour
     public Vector3 targetCoord;
 
     public float moveSpeed = 5;
-
     public int health;
 
     Color white = Color.white;
@@ -47,7 +46,7 @@ public class EnemyBehaviour : MonoBehaviour
     {
 
         transform.position = Vector3.MoveTowards(transform.position, targetCoord, moveSpeed * Time.deltaTime);
-        if (transform.position == targetCoord & !coroutineStarted)
+        if (transform.position == targetCoord && !coroutineStarted)
         {
             coroutineStarted = true;
             StartCoroutine(Wait());
@@ -63,6 +62,7 @@ public class EnemyBehaviour : MonoBehaviour
         }
         if(health <= 0)
         {
+            RoomController.totalEnemyCount -= 1;
             Destroy(gameObject);
         }
     }

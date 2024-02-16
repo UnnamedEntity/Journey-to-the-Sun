@@ -77,6 +77,7 @@ public class PlayerBehaviour : MonoBehaviour
         if(health == 0)
         {
             Destroy(gameObject);
+            Debug.Log("YOU DIED");
         }
     }
 
@@ -137,6 +138,7 @@ public class PlayerBehaviour : MonoBehaviour
     IEnumerator PlayerHurt()
     {
         health -= 1;
+        Debug.Log($"HP: {health}");
         invinsible = true;
         yield return new WaitForSeconds(1);
         invinsible = false;

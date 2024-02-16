@@ -23,6 +23,7 @@ public class Room : MonoBehaviour
 
     int maxNumOfEnemies;
     int currentNumOfEnemies;
+    int totalEnemyCount;
 
     List<int> weightedPossibleNoOfRooms = new List<int>();
 
@@ -51,6 +52,7 @@ public class Room : MonoBehaviour
         {
             randomEnemy = EnemyPrefabManager.enemyPrefabList[EnemyHelper.GetRandomEnemy()];
             Instantiate(randomEnemy, transform.position + EnemyHelper.GetRandomVector(), RoomController.roomTransform.rotation, this.transform);
+            RoomController.totalEnemyCount++;
         }
     }
 

@@ -22,13 +22,17 @@ public class RoomController : MonoBehaviour
     int iterationAttempts = 0;
     bool removeDoorsCalled = false;
     public bool roomGenComplete = false;
+    public int totalEnemyCount;
+    bool displayedWinMessage = false;
     
     private Queue<GameObject> _toCreate = new Queue<GameObject>();
+
     //lists
     List<Vector3> listOfCollisionCoords = new List<Vector3>();
     List<Vector3> directionList = new List<Vector3>();
     public List<Vector3> listOfCreatedRooms = new List<Vector3>();
     List<Vector3> listOfNullAndReservedRooms = new List<Vector3>();
+    public List<GameObject> clearedRooms = new List<GameObject>();
 
     void StartIteration()
     {
@@ -67,10 +71,14 @@ public class RoomController : MonoBehaviour
         {
             roomGenComplete = true;
         }
-
         if (Input.GetKeyDown(KeyCode.Space))
         {
             SceneManager.RefreshGen();
+        }
+        if(totalEnemyCount == 0 && !displayedWinMessage)
+        {
+            Debug.Log("YOU WIN!");
+            displayedWinMessage = true;
         }
     }
 
