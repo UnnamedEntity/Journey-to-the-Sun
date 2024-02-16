@@ -18,7 +18,6 @@ public class ProjectileBehaviour : MonoBehaviour
         if (direction == "Right")
         {
             transform.position += transform.right * speed * Time.deltaTime;
-            ///transform.position += (transform.right + transform.up) * speed * Time.deltaTime * 0.75f;
         }
         if (direction == "Up")
         {

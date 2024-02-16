@@ -9,23 +9,55 @@ public class DoorController : MonoBehaviour
 
     public GameObject currentRoom;
     public GameObject Player;
+
     PlayerBehaviour PlayerBehaviour;
+    ProjectileBehaviour ProjectileBehaviour;
 
     public List<GameObject> clearedRooms = new List<GameObject>();
+
+    int randomPowerUp;
 
     private void Start()
     {
         Player = GameObject.Find("Player");
         PlayerBehaviour = Player.GetComponent<PlayerBehaviour>();
+        ProjectileBehaviour = Player.GetComponent<ProjectileBehaviour>();
         clearedRooms.Add(GameObject.Find("room(0.00, 0.00, 0.00)"));
     }
 
     void Update()
     {
         currentRoom = GameObject.Find($"room{PlayerBehaviour.playerRoomCoord}");
-        if (currentRoom.transform.childCount == 11 && !clearedRooms.Contains(currentRoom))
+        if (currentRoom.transform.childCount == 11 && !clearedRooms.Contains(currentRoom) && transform.name == currentRoom.name)
         {
             clearedRooms.Add(currentRoom);
+            randomPowerUp = Random.Range(1, 5);
+            switch (randomPowerUp)
+            {
+                case 1:
+                    PlayerBehaviour.health += 1;
+                    Debug.Log("Health Up");
+                    break;
+                case 2:
+                    PlayerBehaviour.movementSpeed += 2;
+                    Debug.Log("Speed Up");
+                    break;
+                case 3:
+                    PlayerBehaviour.attackDamage += 0.5f;
+                    Debug.Log("Attack Up");
+                    break;
+                case 4:
+                    PlayerBehaviour.shootDelay -= 0.1f;
+                    Debug.Log("Shot Rate Up");
+                    break;
+                case 5:
+                    ProjectileBehaviour.speed += 2;
+                    Debug.Log("Shot Speed Up");
+                    break;
+
+            }
+
+
         }
         if (clearedRooms.Contains(currentRoom))
         {
