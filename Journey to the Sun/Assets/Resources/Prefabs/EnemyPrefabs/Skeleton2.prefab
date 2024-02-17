@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 8650047778988962597}
   - component: {fileID: 2723240517035989877}
   - component: {fileID: 5075166511860141310}
-  - component: {fileID: 7637901783899984717}
   - component: {fileID: 3502165401633623089}
   - component: {fileID: 7245352013259123701}
   - component: {fileID: 8896973568225602923}
@@ -148,28 +147,6 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: -0.009, y: 0}
   m_Radius: 0.04
---- !u!195 &7637901783899984717
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8818466259304297648}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.06
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 0
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 0.16000001
-  m_BaseOffset: 0.080000006
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!114 &3502165401633623089
 MonoBehaviour:
   m_ObjectHideFlags: 0

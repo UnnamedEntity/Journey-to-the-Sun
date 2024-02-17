@@ -248,7 +248,10 @@ MonoBehaviour:
   worldCoord: {x: 0, y: 0, z: 0}
   childRooms: 0
   roomGenComplete: 0
+  totalEnemyCount: 0
+  refreshTimer: 0
   listOfCreatedRooms: []
+  clearedRooms: []
 --- !u!4 &236676175
 Transform:
   m_ObjectHideFlags: 0
@@ -306,6 +309,7 @@ MonoBehaviour:
   PositionOffset: {fileID: 201316036}
   offsetBehaviour: {fileID: 201316037}
   rend: {fileID: 434160400}
+  SceneManager: {fileID: 484603960}
   timeOffset: 0
   playerRoomCoord: {x: 0, y: 0, z: 0}
   leftOffset: {x: -1, y: 0, z: 0}
@@ -510,6 +514,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31683292305d1714ea0779607ac81764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  refreshGenPrompted: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -617,7 +622,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 7.9568367
+  orthographic size: 7.76734
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -789,9 +794,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1121860152}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e07af825bfaad6047998edcd26b6d813, type: 3}
+  m_Script: {fileID: 11500000, guid: 3530fde6015f10842a72019016017b82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RoomControllerObject: {fileID: 0}
+  EnemyHelperObject: {fileID: 0}
+  Player: {fileID: 0}
+  rend: {fileID: 0}
+  enemyWorldCoord: {x: 0, y: 0, z: 0}
+  targetCoord: {x: 0, y: 0, z: 0}
+  moveSpeed: 5
+  health: 0
 --- !u!58 &1121860155
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1076,7 +1089,7 @@ MonoBehaviour:
   defeatedEnemies: 0
   currentRoom: {fileID: 0}
   Player: {fileID: 0}
-  clearedRooms: []
+  RoomControllerObject: {fileID: 0}
 --- !u!4 &1726364535
 Transform:
   m_ObjectHideFlags: 0

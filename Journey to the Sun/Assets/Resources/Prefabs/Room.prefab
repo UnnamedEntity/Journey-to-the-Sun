@@ -127,6 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DoorController: {fileID: 0}
+  RoomControllerObject: {fileID: 0}
 --- !u!1 &293705842676552978
 GameObject:
   m_ObjectHideFlags: 0
@@ -5014,7 +5015,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defeatedEnemies: 0
+  currentRoom: {fileID: 0}
   Player: {fileID: 0}
+  RoomControllerObject: {fileID: 0}
 --- !u!1 &4503419877877563367
 GameObject:
   m_ObjectHideFlags: 0
@@ -7380,6 +7383,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DoorController: {fileID: 0}
+  RoomControllerObject: {fileID: 0}
 --- !u!1 &8514764959306273941
 GameObject:
   m_ObjectHideFlags: 0
@@ -7425,7 +7429,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defeatedEnemies: 0
+  currentRoom: {fileID: 0}
   Player: {fileID: 0}
+  RoomControllerObject: {fileID: 0}
 --- !u!1 &9172754240265749938
 GameObject:
   m_ObjectHideFlags: 0
