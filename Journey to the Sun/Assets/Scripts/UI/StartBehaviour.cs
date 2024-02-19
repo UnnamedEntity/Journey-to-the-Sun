@@ -15,6 +15,13 @@ public class StartBehaviour : MonoBehaviour
 
     void ButtonClicked()
     {
+        StartCoroutine(WaitAndLoad());
+    }
+
+    IEnumerator WaitAndLoad()
+    {
+        yield return new WaitForSeconds(0.5f);
         UnityEngine.SceneManagement.SceneManager.LoadScene("Map");
     }
+
 }
