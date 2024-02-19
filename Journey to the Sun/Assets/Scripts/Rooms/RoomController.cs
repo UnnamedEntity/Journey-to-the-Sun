@@ -15,29 +15,29 @@ public class RoomController : MonoBehaviour
 
     public Vector3 worldCoord;
     //private variables
-    int maxRooms = 12;
-    int createdRooms = 1;
+    int _maxRooms = 60;
+    int _createdRooms = 1;
     public int childRooms;
-    int presentChildRooms;
-    int iterationAttempts = 0;
-    bool removeDoorsCalled = false;
+    int _presentChildRooms;
+    int _iterationAttempts = 0;
+    bool _removeDoorsCalled = false;
     public bool roomGenComplete = false;
     public int totalEnemyCount;
-    bool displayedWinMessage = false;
+    bool _displayedWinMessage = false;
     public float refreshTimer;
     
     private Queue<GameObject> _toCreate = new Queue<GameObject>();
 
     //lists
-    List<Vector3> listOfCollisionCoords = new List<Vector3>();
-    List<Vector3> directionList = new List<Vector3>();
+    List<Vector3> _listOfCollisionCoords = new List<Vector3>();
+    List<Vector3> _directionList = new List<Vector3>();
     public List<Vector3> listOfCreatedRooms = new List<Vector3>();
-    List<Vector3> listOfNullAndReservedRooms = new List<Vector3>();
+    List<Vector3> _listOfNullAndReservedRooms = new List<Vector3>();
     public List<GameObject> clearedRooms = new List<GameObject>();
 
     void StartIteration()
     {
-        iterationAttempts++;
+        _iterationAttempts++;
         parentRoom = _toCreate.Dequeue();
         childRooms = parentRoom.GetComponent<Room>().childRooms;
         CreateDirectionList(childRooms);
@@ -53,20 +53,20 @@ public class RoomController : MonoBehaviour
 
     private void Update()
     {
-        if (iterationAttempts > 1)
+        if (_iterationAttempts > 1)
         {
-            iterationAttempts = 0;
+            _iterationAttempts = 0;
             SceneManager.RefreshGen();
         }
 
-        if (createdRooms < maxRooms && roomGenComplete == false)
+        if (_createdRooms < _maxRooms && roomGenComplete == false)
         {
             StartIteration();
         }
-        else if(removeDoorsCalled == false)
+        else if(_removeDoorsCalled == false)
         {
             RemoveDoors();
-            removeDoorsCalled = true;
+            _removeDoorsCalled = true;
         }
         else
         {
@@ -84,26 +84,26 @@ public class RoomController : MonoBehaviour
         {
             refreshTimer = 0;
         }
-        if(totalEnemyCount == 0 && !displayedWinMessage && roomGenComplete)
+        if(totalEnemyCount == 0 && !_displayedWinMessage && roomGenComplete)
         { 
             Debug.Log("YOU WIN!");
-            displayedWinMessage = true;
+            _displayedWinMessage = true;
         }
     }
 
     void CreateDirectionList(int childRooms)
     {
-        iterationAttempts = 0;
+        _iterationAttempts = 0;
         var directionListPreset = new List<Vector3>();
         Vector3[] directionArray = { Vector3.up, Vector3.down, Vector3.left, Vector3.right };
 
-        directionList.Clear();
+        _directionList.Clear();
 
         directionListPreset.AddRange(directionArray);
         for (int i = 0; i < childRooms; i++)
         {
             int randomIndex = Random.Range(0, directionListPreset.Count);
-            directionList.Add(directionListPreset[randomIndex]);
+            _directionList.Add(directionListPreset[randomIndex]);
             directionListPreset.RemoveAt(randomIndex);
         }
         CheckAndRemoveCollisions();
@@ -114,15 +114,15 @@ public class RoomController : MonoBehaviour
         var room = Instantiate(this.room, GetWorldCoord(newRoomCoord), roomTransform.rotation);
         room.name = $"room{newRoomCoord}";
         _toCreate.Enqueue(room);
-        createdRooms++;
-        presentChildRooms++;
+        _createdRooms++;
+        _presentChildRooms++;
         listOfCreatedRooms.Add(newRoomCoord);
     }
     
     void CheckAndRemoveCollisions()
     {
-        presentChildRooms = 0;
-        listOfCollisionCoords.Clear();
+        _presentChildRooms = 0;
+        _listOfCollisionCoords.Clear();
 
         CheckCollision(Vector3.up);
         CheckCollision(Vector3.down);
@@ -136,22 +136,22 @@ public class RoomController : MonoBehaviour
     {
         if (GameObject.Find($"room{GetRoomCoord(parentRoom.transform.position) + direction}"))
         {
-            presentChildRooms++;
-            listOfCollisionCoords.Add(direction);
+            _presentChildRooms++;
+            _listOfCollisionCoords.Add(direction);
             return;
         }
 
-        if (!directionList.Contains(direction))
+        if (!_directionList.Contains(direction))
         {
-            listOfNullAndReservedRooms.Add(GetRoomCoord(parentRoom.transform.position) + direction);
+            _listOfNullAndReservedRooms.Add(GetRoomCoord(parentRoom.transform.position) + direction);
         }
 
-        if (listOfNullAndReservedRooms.Contains(GetRoomCoord(parentRoom.transform.position) + direction))
+        if (_listOfNullAndReservedRooms.Contains(GetRoomCoord(parentRoom.transform.position) + direction))
         {
             return;
         }
 
-        if (presentChildRooms < childRooms)
+        if (_presentChildRooms < childRooms)
         { 
             CreateRoom(GetRoomCoord(parentRoom.transform.position) + direction, direction);
         }
@@ -159,11 +159,11 @@ public class RoomController : MonoBehaviour
 
     void RemoveCollisions()
     {
-        foreach (Vector3 coords in listOfCollisionCoords)
+        foreach (Vector3 coords in _listOfCollisionCoords)
         {
-            if (directionList.Contains(coords))
+            if (_directionList.Contains(coords))
             {
-                directionList.Remove(coords);
+                _directionList.Remove(coords);
             }
         } 
     }

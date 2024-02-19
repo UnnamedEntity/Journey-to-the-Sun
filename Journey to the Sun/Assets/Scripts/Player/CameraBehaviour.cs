@@ -9,6 +9,7 @@ public class CameraBehaviour : MonoBehaviour
 
     public RoomController RoomController; 
     public PlayerBehaviour PlayerBehaviour;
+
     public float moveSpeed = 35;
 
     // Update is called once per frame

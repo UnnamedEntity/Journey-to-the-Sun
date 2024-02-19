@@ -4,25 +4,25 @@ using UnityEngine;
 
 public class Skeleton1ProjectileBehaviour : MonoBehaviour
 {
-    SpriteRenderer sprite;
+    SpriteRenderer _Sprite;
 
     public GameObject Player;
-    PlayerBehaviour PlayerBehaviour;
+    PlayerBehaviour _PlayerBehaviour;
 
-    Vector3 direction;
+    Vector3 _direction;
 
-    int speed = 7;
+    int _speed = 7;
 
     void Start()
     {
         Player = GameObject.Find("Player");
-        sprite = GetComponentInChildren<SpriteRenderer>();
-        sprite.sortingOrder = 1;
-        direction = (Player.transform.position - sprite.transform.position).normalized; 
+        _Sprite = GetComponentInChildren<SpriteRenderer>();
+        _Sprite.sortingOrder = 1;
+        _direction = (Player.transform.position - _Sprite.transform.position).normalized; 
     }
 
     void FixedUpdate()
     {
-        transform.position += direction * speed * Time.deltaTime;
+        transform.position += _direction * _speed * Time.deltaTime;
     }
 }

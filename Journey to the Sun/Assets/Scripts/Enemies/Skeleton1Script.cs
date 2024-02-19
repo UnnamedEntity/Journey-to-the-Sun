@@ -5,46 +5,40 @@ using UnityEngine;
 public class Skeleton1Script : MonoBehaviour
 {
     public GameObject Player;
-    PlayerBehaviour PlayerBehaviour;
-
-    public GameObject RoomControllerObject;
-    RoomController RoomController;
+    PlayerBehaviour _PlayerBehaviour;
 
     public GameObject Skeleton1Projectile;
 
-    EnemyBehaviour EnemyBehav;
+    EnemyBehaviour _EnemyBehav;
 
-    int randomTime;
-    float timeElapsed;
+    int _randomTime;
+    float _timeElapsed;
     
     // Start is called before the first frame update
     void Start()
     {
         Player = GameObject.Find("Player");
-        PlayerBehaviour = Player.GetComponent<PlayerBehaviour>();
+        _PlayerBehaviour = Player.GetComponent<PlayerBehaviour>();
 
-        RoomControllerObject = GameObject.Find("RoomController");
-        RoomController = RoomControllerObject.GetComponent<RoomController>();
+        _EnemyBehav = GetComponent<EnemyBehaviour>();
 
-        EnemyBehav = GetComponent<EnemyBehaviour>();
-
-        randomTime = Random.Range(2, 5);
+        _randomTime = Random.Range(2, 5);
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(timeElapsed < randomTime)
+        if(_timeElapsed < _randomTime)
         {
-            timeElapsed += Time.deltaTime;
+            _timeElapsed += Time.deltaTime;
         }
         else
         {
             CreateProjectile();
-            timeElapsed = 0;
-            randomTime = Random.Range(5, 8);
+            _timeElapsed = 0;
+            _randomTime = Random.Range(5, 8);
         }
-        if (EnemyBehav.health == 0)
+        if (_EnemyBehav.health == 0)
         {
             Destroy(gameObject);
         }
@@ -52,7 +46,7 @@ public class Skeleton1Script : MonoBehaviour
 
     void CreateProjectile()
     {
-        if (RoomController.GetWorldCoord(PlayerBehaviour.playerRoomCoord) == EnemyBehav.enemyWorldCoord)
+        if (RoomController.GetWorldCoord(_PlayerBehaviour.playerRoomCoord) == _EnemyBehav.enemyWorldCoord)
         {
             Instantiate(Skeleton1Projectile, transform.position, transform.rotation);
         }

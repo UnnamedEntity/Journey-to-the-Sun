@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class RightScript : MonoBehaviour
 {
-    SkullProjectileBehaviour SkullProjectileBehaviour;
+    SkullProjectileBehaviour _SkullProjectileBehaviour;
 
     private void Start()
     {
-        SkullProjectileBehaviour = transform.parent.GetComponent<SkullProjectileBehaviour>();
+        _SkullProjectileBehaviour = transform.parent.GetComponent<SkullProjectileBehaviour>();
     }
     private void FixedUpdate()
     {
-        transform.position += Vector3.right.normalized * SkullProjectileBehaviour.speed * Time.deltaTime;
+        transform.position += Vector3.right.normalized * _SkullProjectileBehaviour.speed * Time.deltaTime;
     }
 }

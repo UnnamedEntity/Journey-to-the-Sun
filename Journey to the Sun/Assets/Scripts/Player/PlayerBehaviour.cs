@@ -8,19 +8,19 @@ public class PlayerBehaviour : MonoBehaviour
     public int health = 6;
     public float attackDamage = 1f;
     public float shootDelay = 0.75f;
-    bool invinsible = false;
+    bool _invinsible = false;
 
-    Rigidbody2D body;
-    Animator anim;
+    Rigidbody2D _Body;
+    Animator _Anim;
 
     public ProjectileBehaviour ProjectileBehaviour;
     public Transform PositionOffset;
-    public OffsetBehaviour offsetBehaviour;
-    public SpriteRenderer rend;
+    public OffsetBehaviour OffsetBehaviour;
+    public SpriteRenderer Rend;
     public SceneManager SceneManager;
 
-    float horizontal;
-    float vertical;
+    float _horizontal;
+    float _vertical;
     
     public float timeOffset;
     public Vector3 playerRoomCoord;
@@ -30,22 +30,22 @@ public class PlayerBehaviour : MonoBehaviour
     public Vector3 upOffset = new Vector3(0, 1f, 0);
     public Vector3 downOffset = new Vector3(0, -1f, 0);
 
-    bool isFacingRight;
+    bool _isFacingRight;
 
     // Start is called before the first frame update
     void Start()
     {
         //Pulls components from Unity to allow them to be used in code
-        body = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
+        _Body = GetComponent<Rigidbody2D>();
+        _Anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
         //Creates values of either 1 or -1 for horizontal and vertical inputs
-        horizontal = Input.GetAxisRaw("Horizontal");
-        vertical = Input.GetAxisRaw("Vertical");
+        _horizontal = Input.GetAxisRaw("Horizontal");
+        _vertical = Input.GetAxisRaw("Vertical");
     }
 
     //FixedUpdate is called once every fixed frame based on requested framerate (i.e 60fps, 120fps)
@@ -59,12 +59,12 @@ public class PlayerBehaviour : MonoBehaviour
         }
 
         //horizontal * movementSpeed makes the movement speed either positive or negative by multiplying by the GetAxisRaw value
-        body.velocity = new Vector2(horizontal * movementSpeed, vertical * movementSpeed);
-        body.velocity = Vector2.ClampMagnitude(body.velocity, movementSpeed);
+        _Body.velocity = new Vector2(_horizontal * movementSpeed, _vertical * movementSpeed);
+        _Body.velocity = Vector2.ClampMagnitude(_Body.velocity, movementSpeed);
 
 
         //Sets value of "Speed" in the animation controller to the speed of the player
-        anim.SetFloat("Speed", Mathf.Abs(GetSpeed(body.velocity)));
+        _Anim.SetFloat("Speed", Mathf.Abs(GetSpeed(_Body.velocity)));
 
         //Checks the direction the player is facing and changes the direction of the sprite according to the direction the player is moving
         CheckFlipDirection();
@@ -87,16 +87,16 @@ public class PlayerBehaviour : MonoBehaviour
         Vector3 currentScaleX = transform.localScale;
         currentScaleX.x *= -1;
         transform.localScale = currentScaleX;
-        isFacingRight = !isFacingRight;
+        _isFacingRight = !_isFacingRight;
     }
 
     void CheckFlipDirection()
     {
-        if (horizontal > 0 && isFacingRight)
+        if (_horizontal > 0 && _isFacingRight)
         {
             FlipPlayer();
         }
-        if (horizontal < 0 && !isFacingRight)
+        if (_horizontal < 0 && !_isFacingRight)
         {
             FlipPlayer();
         }
@@ -113,7 +113,7 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if (Input.GetKey(keyCode))
         {
-            offsetBehaviour.transform.position = transform.position + projectileOffset; //Sets position of the offset to the position of the player + the offset vector
+            OffsetBehaviour.transform.position = transform.position + projectileOffset; //Sets position of the offset to the position of the player + the offset vector
             if (timeOffset >= shootDelay) //Allows code to be executed if the time since the last shot has gone past the delay
             {
                 ProjectileBehaviour.direction = direction;
@@ -124,7 +124,7 @@ public class PlayerBehaviour : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if((collision.gameObject.tag == "Projectile" || collision.gameObject.tag == "Enemy") && !invinsible)
+        if((collision.gameObject.tag == "Projectile" || collision.gameObject.tag == "Enemy") && !_invinsible)
         {
             StartCoroutine(FlashRed());
             StartCoroutine(PlayerHurt());
@@ -132,17 +132,17 @@ public class PlayerBehaviour : MonoBehaviour
     }
     IEnumerator FlashRed()
     {
-        rend.color = Color.red;
+        Rend.color = Color.red;
         yield return new WaitForSeconds(0.1f);
-        rend.color = Color.white;
+        Rend.color = Color.white;
     }
     IEnumerator PlayerHurt()
     {
         health -= 1;
         Debug.Log($"HP: {health}");
-        invinsible = true;
+        _invinsible = true;
         yield return new WaitForSeconds(1);
-        invinsible = false;
+        _invinsible = false;
     }
 
 }

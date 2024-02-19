@@ -6,26 +6,24 @@ using UnityEngine;
 public class Room : MonoBehaviour
 {
 
-    int[] possibleNoOfRooms = { 2, 3, 4 };
+    int[] _possibleNoOfRooms = { 2, 3, 4 };
     int[] probabilityDistribution = { 10, 4, 1 };
 
     
 
     public GameObject RoomControllerObject;
-    RoomController RoomController;
+    RoomController _RoomController;
 
     public GameObject EnemyPrefabManagerObject;
-    EnemyPrefabManager EnemyPrefabManager;
+    EnemyPrefabManager _EnemyPrefabManager;
 
-    EnemyHelper EnemyHelper;
+    EnemyHelper _EnemyHelper;
 
-    GameObject randomEnemy;
+    GameObject _randomEnemy;
 
-    int maxNumOfEnemies;
-    int currentNumOfEnemies;
-    int totalEnemyCount;
+    int _maxNumOfEnemies;
 
-    List<int> weightedPossibleNoOfRooms = new List<int>();
+    List<int> _weightedPossibleNoOfRooms = new List<int>();
 
     public int childRooms;
 
@@ -34,26 +32,26 @@ public class Room : MonoBehaviour
     public void Awake()
     {
         WeightArray();
-        childRooms = GetRandomIndex(weightedPossibleNoOfRooms);
+        childRooms = GetRandomIndex(_weightedPossibleNoOfRooms);
     }
     private void Start()
     {
         RoomControllerObject = GameObject.Find("RoomController");
-        RoomController = RoomControllerObject.GetComponent<RoomController>();
+        _RoomController = RoomControllerObject.GetComponent<RoomController>();
 
         EnemyPrefabManagerObject = GameObject.Find("EnemyPrefabManager");
-        EnemyPrefabManager = EnemyPrefabManagerObject.GetComponent<EnemyPrefabManager>();
+        _EnemyPrefabManager = EnemyPrefabManagerObject.GetComponent<EnemyPrefabManager>();
 
-        EnemyHelper = FindAnyObjectByType<EnemyHelper>();
+        _EnemyHelper = FindAnyObjectByType<EnemyHelper>();
 
-        maxNumOfEnemies = Random.Range(1, 6);
+        _maxNumOfEnemies = Random.Range(1, 6);
         if(transform.name != "room(0.00, 0.00, 0.00)")
         {
-            for (int i = 0; i < maxNumOfEnemies; i++)
+            for (int i = 0; i < _maxNumOfEnemies; i++)
             {
-                randomEnemy = EnemyPrefabManager.enemyPrefabList[EnemyHelper.GetRandomEnemy()];
-                Instantiate(randomEnemy, transform.position + EnemyHelper.GetRandomVector(), RoomController.roomTransform.rotation, this.transform);
-                RoomController.totalEnemyCount++;
+                _randomEnemy = _EnemyPrefabManager.enemyPrefabList[_EnemyHelper.GetRandomEnemy()];
+                Instantiate(_randomEnemy, transform.position + _EnemyHelper.GetRandomVector(), _RoomController.roomTransform.rotation, this.transform);
+                _RoomController.totalEnemyCount++;
             }
         }
         
@@ -69,7 +67,7 @@ public class Room : MonoBehaviour
     }
     void WeightArray()
     {
-        for (int i = 0; i < possibleNoOfRooms.Length; i++)
+        for (int i = 0; i < _possibleNoOfRooms.Length; i++)
         {
             switch (i)
             {
@@ -77,25 +75,25 @@ public class Room : MonoBehaviour
                 case 0:
                     for (int x = 0; x < probabilityDistribution[0]; x++)
                     {
-                        weightedPossibleNoOfRooms.Add(possibleNoOfRooms[i]);
+                        _weightedPossibleNoOfRooms.Add(_possibleNoOfRooms[i]);
                     }
                     break;
                 case 1:
                     for (int x = 0; x < probabilityDistribution[1]; x++)
                     {
-                        weightedPossibleNoOfRooms.Add(possibleNoOfRooms[i]);
+                        _weightedPossibleNoOfRooms.Add(_possibleNoOfRooms[i]);
                     }
                     break;
                 case 2:
                     for (int x = 0; x < probabilityDistribution[2]; x++)
                     {
-                        weightedPossibleNoOfRooms.Add(possibleNoOfRooms[i]);
+                        _weightedPossibleNoOfRooms.Add(_possibleNoOfRooms[i]);
                     }
                     break;
                 case 3:
                     for (int x = 0; x < probabilityDistribution[3]; x++)
                     {
-                        weightedPossibleNoOfRooms.Add(possibleNoOfRooms[i]);
+                        _weightedPossibleNoOfRooms.Add(_possibleNoOfRooms[i]);
                     }
                     break;
             }

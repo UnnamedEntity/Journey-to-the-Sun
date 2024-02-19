@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class QuitBehaviour : MonoBehaviour
 {
-    public Button StartButton;
+    public Button QuitButton;
     void Start()
     {
-        Button btn = StartButton.GetComponent<Button>();
+        Button btn = QuitButton.GetComponent<Button>();
         btn.onClick.AddListener(ButtonClicked);
     }
   

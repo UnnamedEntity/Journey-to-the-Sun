@@ -5,26 +5,26 @@ using UnityEngine;
 public class RoomEnterCollider : MonoBehaviour
 {
     public GameObject DoorController;
-    DoorController doorControllerScript;
+    DoorController _DoorControllerScript;
 
     public GameObject RoomControllerObject;
-    RoomController RoomController;
+    RoomController _RoomController;
 
     private void Start()
     {
         DoorController = GameObject.Find("DoorController");
-        doorControllerScript = DoorController.GetComponent<DoorController>();
+        _DoorControllerScript = DoorController.GetComponent<DoorController>();
 
         RoomControllerObject = GameObject.Find("RoomController");
-        RoomController = RoomControllerObject.GetComponent<RoomController>();
+        _RoomController = RoomControllerObject.GetComponent<RoomController>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Player" && !RoomController.clearedRooms.Contains(doorControllerScript.currentRoom))
+        if(collision.gameObject.tag == "Player" && !_RoomController.clearedRooms.Contains(_DoorControllerScript.CurrentRoom))
         {
-            doorControllerScript.defeatedEnemies = false;
-            doorControllerScript.EnableDoors();
+            _DoorControllerScript.defeatedEnemies = false;
+            _DoorControllerScript.EnableDoors();
         }
         
     }
