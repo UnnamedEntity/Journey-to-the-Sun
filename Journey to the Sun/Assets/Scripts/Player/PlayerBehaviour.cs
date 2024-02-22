@@ -13,11 +13,10 @@ public class PlayerBehaviour : MonoBehaviour
     Rigidbody2D _Body;
     Animator _Anim;
 
-    public ProjectileBehaviour ProjectileBehaviour;
-    public Transform PositionOffset;
-    public OffsetBehaviour OffsetBehaviour;
-    public SpriteRenderer Rend;
-    public SceneManager SceneManager;
+    [SerializeField]ProjectileBehaviour ProjectileBehaviour;
+    [SerializeField]GameObject PositionOffset;
+    [SerializeField]SpriteRenderer Rend;
+    [SerializeField]SceneManager SceneManager;
 
     float _horizontal;
     float _vertical;
@@ -113,12 +112,12 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if (Input.GetKey(keyCode))
         {
-            OffsetBehaviour.transform.position = transform.position + projectileOffset; //Sets position of the offset to the position of the player + the offset vector
+            PositionOffset.transform.position = transform.position + projectileOffset; //Sets position of the offset to the position of the player + the offset vector
             if (timeOffset >= shootDelay) //Allows code to be executed if the time since the last shot has gone past the delay
             {
                 ProjectileBehaviour.direction = direction;
                 timeOffset = 0;
-                Instantiate(ProjectileBehaviour, PositionOffset.position, transform.rotation);
+                Instantiate(ProjectileBehaviour, PositionOffset.transform.position, transform.rotation);
             }
         }
     }

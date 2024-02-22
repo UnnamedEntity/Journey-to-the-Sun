@@ -175,7 +175,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 201316036}
-  - component: {fileID: 201316037}
   m_Layer: 9
   m_Name: PositionOffset
   m_TagString: Untagged
@@ -198,18 +197,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 434160401}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &201316037
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 201316035}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13b73fd4f3357de49a2f39bc028abb7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &236676173
 GameObject:
   m_ObjectHideFlags: 0
@@ -306,9 +293,8 @@ MonoBehaviour:
   shootDelay: 0.5
   ProjectileBehaviour: {fileID: 8784185660587669201, guid: c2399a318406f804f838880f726e5046,
     type: 3}
-  PositionOffset: {fileID: 201316036}
-  offsetBehaviour: {fileID: 201316037}
-  rend: {fileID: 434160400}
+  PositionOffset: {fileID: 201316035}
+  Rend: {fileID: 0}
   SceneManager: {fileID: 484603960}
   timeOffset: 0
   playerRoomCoord: {x: 0, y: 0, z: 0}
@@ -515,6 +501,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   refreshGenPrompted: 0
+  pauseSceneLoaded: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -665,6 +652,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51482b32620292c42ad330d0e0ee6e49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RoomControllerObject: {fileID: 0}
+  Player: {fileID: 0}
   RoomController: {fileID: 236676174}
   PlayerBehaviour: {fileID: 434160398}
   moveSpeed: 35
@@ -800,7 +789,7 @@ MonoBehaviour:
   RoomControllerObject: {fileID: 0}
   EnemyHelperObject: {fileID: 0}
   Player: {fileID: 0}
-  rend: {fileID: 0}
+  Rend: {fileID: 0}
   enemyWorldCoord: {x: 0, y: 0, z: 0}
   targetCoord: {x: 0, y: 0, z: 0}
   moveSpeed: 5
@@ -1087,7 +1076,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defeatedEnemies: 0
-  currentRoom: {fileID: 0}
+  CurrentRoom: {fileID: 0}
   Player: {fileID: 0}
   RoomControllerObject: {fileID: 0}
 --- !u!4 &1726364535
