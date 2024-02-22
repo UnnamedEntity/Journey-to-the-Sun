@@ -6,11 +6,11 @@ using UnityEngine.SceneManagement;
 public class SceneManager : MonoBehaviour
 {
     public bool refreshGenPrompted = false;
-    bool _pauseSceneLoaded;
+    public bool pauseSceneLoaded;
 
     private void Update()
     {
-        if (!_pauseSceneLoaded)
+        if (!pauseSceneLoaded)
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
@@ -20,7 +20,7 @@ public class SceneManager : MonoBehaviour
                 StartCoroutine(WaitAndPause());
             }
         }
-        if (_pauseSceneLoaded)
+        if (pauseSceneLoaded)
         {
             if(Input.GetKeyDown(KeyCode.Escape))
             {
@@ -35,13 +35,13 @@ public class SceneManager : MonoBehaviour
     IEnumerator WaitAndPause()
     {
         yield return new WaitForEndOfFrame();
-        _pauseSceneLoaded = true;
+        pauseSceneLoaded = true;
     }
 
     IEnumerator WaitAndUnpause()
     {
         yield return new WaitForEndOfFrame();
-        _pauseSceneLoaded = false;
+        pauseSceneLoaded = false;
     }
     public void RefreshGen()
     {

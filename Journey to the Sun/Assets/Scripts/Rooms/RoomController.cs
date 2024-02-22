@@ -15,7 +15,7 @@ public class RoomController : MonoBehaviour
 
     public Vector3 worldCoord;
     //private variables
-    int _maxRooms = 60;
+    int _maxRooms = 12;
     int _createdRooms = 1;
     public int childRooms;
     int _presentChildRooms;

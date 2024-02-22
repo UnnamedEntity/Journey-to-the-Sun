@@ -23,5 +23,4 @@ public class StartBehaviour : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         UnityEngine.SceneManagement.SceneManager.LoadScene("Map");
     }
-
 }
