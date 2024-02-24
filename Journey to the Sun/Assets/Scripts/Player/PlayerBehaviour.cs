@@ -5,18 +5,30 @@ public class PlayerBehaviour : MonoBehaviour
 {
     //Modifiable properties
     public float movementSpeed = 8f;
-    public int health = 6;
+    private int _health = 6;
+    public int Health
+    {
+        get { return _health; }
+        set
+        {
+            if(_health < 0)
+            {
+                _health = 0;
+            }
+        }
+    }
+
     public float attackDamage = 1f;
-    public float shootDelay = 0.75f;
+    public float shotRate = 0.75f;
     bool _invinsible = false;
 
     Rigidbody2D _Body;
     Animator _Anim;
 
-    [SerializeField]ProjectileBehaviour ProjectileBehaviour;
-    [SerializeField]GameObject PositionOffset;
-    [SerializeField]SpriteRenderer Rend;
-    [SerializeField]SceneManager SceneManager;
+    public ProjectileBehaviour ProjectileBehaviour;
+    public GameObject PositionOffset;
+    public SpriteRenderer Rend;
+    public SceneManager SceneManager;
 
     float _horizontal;
     float _vertical;
@@ -52,7 +64,7 @@ public class PlayerBehaviour : MonoBehaviour
     {
         playerRoomCoord = RoomController.GetRoomCoord(transform.position);
         //Increases the value for time since the last shot until it meets the set shootDelay
-        if (timeOffset < shootDelay)
+        if (timeOffset < shotRate)
         {
             timeOffset += Time.deltaTime;
         }
@@ -74,7 +86,7 @@ public class PlayerBehaviour : MonoBehaviour
         PlayerAttackInput(KeyCode.UpArrow, "Up", upOffset);
         PlayerAttackInput(KeyCode.DownArrow, "Down", downOffset);
 
-        if(health == 0)
+        if(_health == 0)
         {
             Destroy(gameObject);
             Debug.Log("YOU DIED");
@@ -113,7 +125,7 @@ public class PlayerBehaviour : MonoBehaviour
         if (Input.GetKey(keyCode))
         {
             PositionOffset.transform.position = transform.position + projectileOffset; //Sets position of the offset to the position of the player + the offset vector
-            if (timeOffset >= shootDelay) //Allows code to be executed if the time since the last shot has gone past the delay
+            if (timeOffset >= shotRate) //Allows code to be executed if the time since the last shot has gone past the delay
             {
                 ProjectileBehaviour.direction = direction;
                 timeOffset = 0;
@@ -137,8 +149,7 @@ public class PlayerBehaviour : MonoBehaviour
     }
     IEnumerator PlayerHurt()
     {
-        health -= 1;
-        Debug.Log($"HP: {health}");
+        _health -= 1;
         _invinsible = true;
         yield return new WaitForSeconds(1);
         _invinsible = false;

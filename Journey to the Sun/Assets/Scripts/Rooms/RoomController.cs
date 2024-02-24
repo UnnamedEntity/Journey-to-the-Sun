@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RoomController : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class RoomController : MonoBehaviour
 
     public Vector3 worldCoord;
     //private variables
-    int _maxRooms = 12;
+    int _maxRooms = 4;
     int _createdRooms = 1;
     public int childRooms;
     int _presentChildRooms;
@@ -84,10 +85,12 @@ public class RoomController : MonoBehaviour
         {
             refreshTimer = 0;
         }
-        if(totalEnemyCount == 0 && !_displayedWinMessage && roomGenComplete)
+        if(totalEnemyCount <= 0 && !_displayedWinMessage && roomGenComplete)
         { 
             Debug.Log("YOU WIN!");
             _displayedWinMessage = true;
+            UnityEngine.SceneManagement.SceneManager.LoadScene("WinScene", LoadSceneMode.Additive);
+
         }
     }
 

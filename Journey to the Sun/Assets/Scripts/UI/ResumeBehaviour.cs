@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 
-public class ResumeGameBehaviour : MonoBehaviour
+public class Resume : MonoBehaviour
 {
     public Button ResumeButton;
     GameObject SceneManagerObj;
@@ -22,11 +22,5 @@ public class ResumeGameBehaviour : MonoBehaviour
         Time.timeScale = 1;
         UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("Pause");
         SceneManager.pauseSceneLoaded = false;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

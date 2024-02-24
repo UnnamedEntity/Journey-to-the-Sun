@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class DoorController : MonoBehaviour
 {
@@ -41,25 +43,25 @@ public class DoorController : MonoBehaviour
             switch (_randomPowerUp)
             {
                 case 1:
-                    _PlayerBehaviour.health += 1;
-                    Debug.Log("Health Up");
-                    Debug.Log($"HP: {_PlayerBehaviour.health}");
+                    _PlayerBehaviour.Health += 1;
+                    Debug.Log($"HP: {_PlayerBehaviour.Health}");
+                    StartCoroutine(HealthUp());
                     break;
                 case 2:
                     _PlayerBehaviour.movementSpeed += 2;
-                    Debug.Log("Speed Up");
+                    StartCoroutine(SpeedUp());
                     break;
                 case 3:
                     _PlayerBehaviour.attackDamage += 0.5f;
-                    Debug.Log("Attack Up");
+                    StartCoroutine(AttackUp());
                     break;
                 case 4:
-                    _PlayerBehaviour.shootDelay -= 0.1f;
-                    Debug.Log("Shot Rate Up");
+                    _PlayerBehaviour.shotRate -= 0.1f;
+                    StartCoroutine(ShotRateUp());
                     break;
                 case 5:
                     _ProjectileBehaviour.speed += 2;
-                    Debug.Log("Shot Speed Up");
+                    StartCoroutine(SpeedUp());
                     break;
             }
         }
@@ -67,6 +69,35 @@ public class DoorController : MonoBehaviour
         {
             DisableDoors();
         }
+    }
+
+    IEnumerator HealthUp()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("HealthUpScene", LoadSceneMode.Additive);
+        yield return new WaitForSeconds(1.75f);
+        UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("HealthUpScene");
+    }
+
+    IEnumerator AttackUp()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("AttackUpScene", LoadSceneMode.Additive);
+        yield return new WaitForSeconds(1.75f);
+        UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("AttackUpScene" +
+            "");
+    }
+
+    IEnumerator ShotRateUp()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("ShotRateUpScene", LoadSceneMode.Additive);
+        yield return new WaitForSeconds(1.75f);
+        UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("ShotRateUpScene");
+    }
+
+    IEnumerator SpeedUp()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("SpeedUpScene", LoadSceneMode.Additive);
+        yield return new WaitForSeconds(1.75f);
+        UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("SpeedUpScene");
     }
 
     public void EnableDoors()

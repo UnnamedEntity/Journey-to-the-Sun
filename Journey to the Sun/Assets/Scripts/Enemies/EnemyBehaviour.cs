@@ -14,13 +14,15 @@ public class EnemyBehaviour : MonoBehaviour
     EnemyHelper _EnemyHelper;
 
     public GameObject Player;
+    PlayerBehaviour _PlayerBehaviour;
     public SpriteRenderer Rend;
+    
 
     public Vector3 enemyWorldCoord;
     public Vector3 targetCoord;
 
     public float moveSpeed = 5;
-    public int health;
+    public float health;
 
     Color _white = Color.white;
     Color _red = Color.red;
@@ -37,6 +39,7 @@ public class EnemyBehaviour : MonoBehaviour
         _EnemyHelper = EnemyHelperObject.GetComponent<EnemyHelper>();
 
         Player = GameObject.Find("Player");
+        _PlayerBehaviour = Player.GetComponent<PlayerBehaviour>();
 
         enemyWorldCoord = transform.parent.transform.position;
         targetCoord = enemyWorldCoord + _EnemyHelper.GetRandomVector();
@@ -133,7 +136,7 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if (collision.gameObject.tag == "PlayerProjectile")
         {
-            health -= 1;
+            health -= _PlayerBehaviour.attackDamage;
             StartCoroutine(FlashRed());
         }
     }

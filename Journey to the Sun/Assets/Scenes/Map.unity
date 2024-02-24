@@ -175,6 +175,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 201316036}
+  - component: {fileID: 201316037}
   m_Layer: 9
   m_Name: PositionOffset
   m_TagString: Untagged
@@ -197,6 +198,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 434160401}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &201316037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 201316035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b73fd4f3357de49a2f39bc028abb7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &236676173
 GameObject:
   m_ObjectHideFlags: 0
@@ -294,7 +307,7 @@ MonoBehaviour:
   ProjectileBehaviour: {fileID: 8784185660587669201, guid: c2399a318406f804f838880f726e5046,
     type: 3}
   PositionOffset: {fileID: 201316035}
-  Rend: {fileID: 0}
+  Rend: {fileID: 434160400}
   SceneManager: {fileID: 484603960}
   timeOffset: 0
   playerRoomCoord: {x: 0, y: 0, z: 0}
@@ -751,7 +764,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1121860153}
   - component: {fileID: 1121860155}
-  - component: {fileID: 1121860154}
   m_Layer: 9
   m_Name: EnemyTrackingTrigger
   m_TagString: EnemyTrackingTrigger
@@ -774,26 +786,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 434160401}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1121860154
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1121860152}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3530fde6015f10842a72019016017b82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RoomControllerObject: {fileID: 0}
-  EnemyHelperObject: {fileID: 0}
-  Player: {fileID: 0}
-  Rend: {fileID: 0}
-  enemyWorldCoord: {x: 0, y: 0, z: 0}
-  targetCoord: {x: 0, y: 0, z: 0}
-  moveSpeed: 5
-  health: 0
 --- !u!58 &1121860155
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -829,7 +821,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 6
+  m_Radius: 6.5
 --- !u!1 &1189204945
 GameObject:
   m_ObjectHideFlags: 0

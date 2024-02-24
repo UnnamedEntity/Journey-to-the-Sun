@@ -162,11 +162,11 @@ MonoBehaviour:
   RoomControllerObject: {fileID: 0}
   EnemyHelperObject: {fileID: 0}
   Player: {fileID: 0}
-  rend: {fileID: 8650047778988962597}
+  Rend: {fileID: 8650047778988962597}
   enemyWorldCoord: {x: 0, y: 0, z: 0}
   targetCoord: {x: 0, y: 0, z: 0}
   moveSpeed: 5
-  health: 4
+  health: 3
 --- !u!114 &7245352013259123701
 MonoBehaviour:
   m_ObjectHideFlags: 0

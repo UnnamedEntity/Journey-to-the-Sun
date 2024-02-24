@@ -22,5 +22,6 @@ public class StartBehaviour : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         UnityEngine.SceneManagement.SceneManager.LoadScene("Map");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("HealthScene", LoadSceneMode.Additive);
     }
 }
