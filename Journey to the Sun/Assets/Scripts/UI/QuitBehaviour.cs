@@ -14,6 +14,7 @@ public class QuitBehaviour : MonoBehaviour
   
     void ButtonClicked()
     {
+        Time.timeScale = 1;
         Application.Quit();
     }
 }

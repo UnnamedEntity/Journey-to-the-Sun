@@ -16,7 +16,7 @@ public class RoomController : MonoBehaviour
 
     public Vector3 worldCoord;
     //private variables
-    int _maxRooms = 4;
+    int _maxRooms = 12;
     int _createdRooms = 1;
     public int childRooms;
     int _presentChildRooms;
@@ -27,7 +27,7 @@ public class RoomController : MonoBehaviour
     bool _displayedWinMessage = false;
     public float refreshTimer;
     
-    private Queue<GameObject> _toCreate = new Queue<GameObject>();
+    private Queue<GameObject> _parentRoomQueue = new Queue<GameObject>();
 
     //lists
     List<Vector3> _listOfCollisionCoords = new List<Vector3>();
@@ -39,7 +39,7 @@ public class RoomController : MonoBehaviour
     void StartIteration()
     {
         _iterationAttempts++;
-        parentRoom = _toCreate.Dequeue();
+        parentRoom = _parentRoomQueue.Dequeue();
         childRooms = parentRoom.GetComponent<Room>().childRooms;
         CreateDirectionList(childRooms);
     }
@@ -89,6 +89,7 @@ public class RoomController : MonoBehaviour
         { 
             Debug.Log("YOU WIN!");
             _displayedWinMessage = true;
+            Time.timeScale = 1;
             UnityEngine.SceneManagement.SceneManager.LoadScene("WinScene", LoadSceneMode.Additive);
 
         }
@@ -116,7 +117,7 @@ public class RoomController : MonoBehaviour
     {
         var room = Instantiate(this.room, GetWorldCoord(newRoomCoord), roomTransform.rotation);
         room.name = $"room{newRoomCoord}";
-        _toCreate.Enqueue(room);
+        _parentRoomQueue.Enqueue(room);
         _createdRooms++;
         _presentChildRooms++;
         listOfCreatedRooms.Add(newRoomCoord);
@@ -126,12 +127,19 @@ public class RoomController : MonoBehaviour
     {
         _presentChildRooms = 0;
         _listOfCollisionCoords.Clear();
-
+        var room = GameObject.Find($"room{GetRoomCoord(parentRoom.transform.position)}");
+        
         CheckCollision(Vector3.up);
         CheckCollision(Vector3.down);
         CheckCollision(Vector3.left);
         CheckCollision(Vector3.right);
-
+        if (room.GetComponent<Room>().childRooms < _presentChildRooms)
+        {
+            foreach(Vector3 coords in _listOfCollisionCoords)
+            {
+                _listOfCollisionCoords.Clear();
+            }
+        }
         RemoveCollisions();
     }
 

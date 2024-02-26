@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class PlayerBehaviour : MonoBehaviour
@@ -89,7 +90,8 @@ public class PlayerBehaviour : MonoBehaviour
         if(_health == 0)
         {
             Destroy(gameObject);
-            Debug.Log("YOU DIED");
+            Time.timeScale = 0;
+            UnityEngine.SceneManagement.SceneManager.LoadScene("DeathScene", LoadSceneMode.Additive);
         }
     }
 
